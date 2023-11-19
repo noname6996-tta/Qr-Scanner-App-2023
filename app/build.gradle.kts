@@ -65,8 +65,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     //MLKit
-//    implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
-//    implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
+    implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
+    implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
+    //
+    implementation  ("com.google.android.gms:play-services-vision:20.1.3")
     // baloon
     implementation("com.github.skydoves:balloon:1.5.4")
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "51205163051",
+    "project_id": "qrscanner2023application",
+    "storage_bucket": "qrscanner2023application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51205163051:android:46e1ed021b48495270826e",
+        "android_client_info": {
+          "package_name": "com.tta.qrscanner2023application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBddIlEgkg0oZVEZ4K77RTGAMRg8rWOk0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

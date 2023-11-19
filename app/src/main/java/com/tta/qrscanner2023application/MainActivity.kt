@@ -9,6 +9,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun getDataBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
-
-
 }

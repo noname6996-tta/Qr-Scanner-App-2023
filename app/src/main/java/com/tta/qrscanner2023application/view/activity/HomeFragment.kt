@@ -1,10 +1,96 @@
 package com.tta.qrscanner2023application.view.activity
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.view.SurfaceHolder
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.vision.CameraSource
+import com.google.android.gms.vision.Detector
+import com.google.android.gms.vision.Detector.Detections
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    override fun getDataBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
+    private var barcodeDetector: BarcodeDetector? = null
+    private var cameraSource: CameraSource? = null
+    private val REQUEST_CAMERA_PERMISSION = 201
+    private var intentData = ""
+
+    override fun getDataBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
+
+    override fun initView() {
+        super.initView()
+        initialiseDetectorsAndSources()
+    }
+
+    private fun initialiseDetectorsAndSources() {
+        Toast.makeText(requireContext(), "Initializing barcode scanner", Toast.LENGTH_SHORT).show()
+
+        barcodeDetector = BarcodeDetector.Builder(requireActivity())
+            .setBarcodeFormats(Barcode.ALL_FORMATS)
+            .build()
+
+        cameraSource = CameraSource.Builder(requireActivity(), barcodeDetector!!)
+            .setRequestedPreviewSize(1920, 1080)
+            .setAutoFocusEnabled(true)
+            .build()
+
+        binding.surfaceView.holder.addCallback(surfaceHolderCallback)
+
+        barcodeDetector?.setProcessor(barcodeProcessor)
+    }
+
+    private val surfaceHolderCallback = object : SurfaceHolder.Callback {
+        override fun surfaceCreated(holder: SurfaceHolder) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(), Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                cameraSource?.start(holder)
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CAMERA),
+                    REQUEST_CAMERA_PERMISSION
+                )
+            }
+        }
+
+        override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+            // Surface changed implementation if needed
+        }
+
+        override fun surfaceDestroyed(holder: SurfaceHolder) {
+            cameraSource?.stop()
+        }
+    }
+
+    private val barcodeProcessor = object : Detector.Processor<Barcode> {
+        override fun release() {
+            Toast.makeText(requireContext(), "Barcode scanner stopped", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun receiveDetections(detections: Detections<Barcode>) {
+            val barcodes = detections.detectedItems
+            if (barcodes.size() != 0) {
+                binding.txtBarcodeValue.post {
+                    intentData = barcodes.valueAt(0).displayValue.trim()
+                    binding.txtBarcodeValue.text = intentData
+                }
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        cameraSource?.release()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initialiseDetectorsAndSources()
     }
 }
