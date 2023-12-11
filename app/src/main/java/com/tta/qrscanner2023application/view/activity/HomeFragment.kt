@@ -10,6 +10,7 @@ import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
+import com.permissionx.guolindev.PermissionX
 import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.databinding.FragmentHomeBinding
 
@@ -23,12 +24,42 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         super.initView()
+        PermissionX.init(this)
+            .permissions(
+                Manifest.permission.CAMERA,
+            )
+            .explainReasonBeforeRequest()
+            .onExplainRequestReason { scope, deniedList ->
+                scope.showRequestReasonDialog(
+                    deniedList,
+                    "Core fundamental are based on these permissions",
+                    "OK",
+                    "Cancel"
+                )
+            }
+            .onForwardToSettings { scope, deniedList ->
+                scope.showForwardToSettingsDialog(
+                    deniedList,
+                    "You need to allow necessary permissions in Settings manually",
+                    "OK",
+                    "Cancel"
+                )
+            }
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "These permissions are denied: $deniedList",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         initialiseDetectorsAndSources()
     }
 
     private fun initialiseDetectorsAndSources() {
-        Toast.makeText(requireContext(), "Initializing barcode scanner", Toast.LENGTH_SHORT).show()
-
         barcodeDetector = BarcodeDetector.Builder(requireActivity())
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()

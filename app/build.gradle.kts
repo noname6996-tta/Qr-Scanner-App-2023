@@ -71,4 +71,6 @@ dependencies {
     implementation  ("com.google.android.gms:play-services-vision:20.1.3")
     // baloon
     implementation("com.github.skydoves:balloon:1.5.4")
+    // permission X
+    implementation ("com.guolindev.permissionx:permissionx:1.7.1")
 }
