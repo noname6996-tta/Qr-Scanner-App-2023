@@ -73,4 +73,6 @@ dependencies {
     implementation("com.github.skydoves:balloon:1.5.4")
     // permission X
     implementation ("com.guolindev.permissionx:permissionx:1.7.1")
+    // zxing
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }
