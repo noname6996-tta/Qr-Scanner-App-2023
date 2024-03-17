@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.activity
+package com.tta.qrscanner2023application.view.fragment
 
 import android.Manifest
 import android.content.pm.PackageManager

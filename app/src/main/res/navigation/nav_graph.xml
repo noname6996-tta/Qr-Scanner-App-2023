@@ -6,22 +6,66 @@
     app:startDestination="@id/qrScanFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.tta.qrscanner2023application.view.activity.SplashFragment"
-        android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash">
+        android:id="@+id/qrScanFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.QrScanFragment"
+        android:label="QrScanFragment"
+        tools:layout="@layout/fragment_qr_scan">
         <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_qrScanFragment_to_generateFragment"
+            app:destination="@id/generateFragment" />
+        <action
+            android:id="@+id/action_qrScanFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_qrScanFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_qrScanFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.tta.qrscanner2023application.view.activity.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/generateFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.GenerateFragment"
+        android:label="GenerateFragment"
+        tools:layout="@layout/fragment_generate" >
+        <action
+            android:id="@+id/action_generateFragment_to_generateCodeFragment"
+            app:destination="@id/generateCodeFragment" />
+        <action
+            android:id="@+id/action_generateFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/qrScanFragment"
-        android:name="com.tta.qrscanner2023application.view.activity.QrScanFragment"
-        android:label="QrScanFragment"
-        tools:layout="@layout/fragment_qr_scan" />
+        android:id="@+id/historyFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_generateFragment"
+            app:destination="@id/generateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/generateCodeFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.GenerateCodeFragment"
+        android:label="GenerateCodeFragment"
+        tools:layout="@layout/fragment_generate_code">
+        <action
+            android:id="@+id/action_generateCodeFragment_to_showQrFragment"
+            app:destination="@id/showQrFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result"/>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting"/>
+    <fragment
+        android:id="@+id/showQrFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.ShowQrFragment"
+        android:label="ShowQrFragment"
+        tools:layout="@layout/fragment_show_qr"/>
 </navigation>

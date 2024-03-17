@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.activity
+package com.tta.qrscanner2023application.view.fragment
 
 import android.util.Log
 import com.google.zxing.BarcodeFormat
@@ -31,9 +31,11 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override fun initView() {
         super.initView()
         checkPermissions(requireContext())
-        binding.btClose.setOnClickListener {
+    }
 
-        }
+    override fun addEvent() = with(binding){
+        super.addEvent()
+
     }
 
     override var onPermissionSuccess: () -> Unit =
