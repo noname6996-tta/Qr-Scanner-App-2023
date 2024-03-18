@@ -57,7 +57,11 @@
         android:id="@+id/resultFragment"
         android:name="com.tta.qrscanner2023application.view.fragment.ResultFragment"
         android:label="ResultFragment"
-        tools:layout="@layout/fragment_result"/>
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="text"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.tta.qrscanner2023application.view.fragment.SettingFragment"

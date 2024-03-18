@@ -1,6 +1,6 @@
 package com.tta.qrscanner2023application.view.fragment
 
-import android.util.Log
+import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
@@ -17,7 +17,12 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
                 return
             }
             lastText = result.text
-            Log.e("tta", lastText)
+            findNavController().navigate(
+                QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
+                    lastText
+                )
+            )
+            lastText = ""
         }
 
         override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {
@@ -33,7 +38,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
         checkPermissions(requireContext())
     }
 
-    override fun addEvent() = with(binding){
+    override fun addEvent() = with(binding) {
         super.addEvent()
 
     }
