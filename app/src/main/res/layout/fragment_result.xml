@@ -188,6 +188,12 @@
                     android:text="Copy" />
             </LinearLayout>
 
+<!--            <include-->
+<!--                layout="@layout/layout_action_code"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/llShare"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

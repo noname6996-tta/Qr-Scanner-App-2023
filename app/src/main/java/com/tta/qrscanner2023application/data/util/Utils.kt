@@ -170,3 +170,10 @@ fun generateQrCode(qrCodeData: String): Bitmap? {
         return null
     }
 }
+
+fun isWebLinkOrAppLink(input: String): Boolean {
+    val webLinkPattern = "^(http|https)://.*".toRegex()
+    val appLinkPattern = "^myapp://.*".toRegex()
+
+    return input.matches(webLinkPattern) || input.matches(appLinkPattern)
+}
