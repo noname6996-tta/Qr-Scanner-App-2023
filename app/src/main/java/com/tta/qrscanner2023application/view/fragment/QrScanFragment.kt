@@ -10,6 +10,7 @@ import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
 
 class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
+    override var isTerminalBackKeyActive: Boolean = false
     private var lastText: String = ""
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {

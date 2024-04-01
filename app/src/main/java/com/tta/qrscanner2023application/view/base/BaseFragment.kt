@@ -1,9 +1,11 @@
 package com.tta.fitnessapplication.view.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
@@ -14,8 +16,19 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
             "Fragment $this binding cannot be accessed before onCreateView() or after onDestroyView()"
         }
 
+    //Enabling or disabling the device back key
+    abstract var isTerminalBackKeyActive: Boolean
+
     protected inline fun binding(block: T.() -> Unit): T {
         return binding.apply(block)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (isTerminalBackKeyActive.not()) {
+            requireActivity().onBackPressedDispatcher
+                .addCallback(this) { }
+        }
     }
 
     override fun onCreateView(

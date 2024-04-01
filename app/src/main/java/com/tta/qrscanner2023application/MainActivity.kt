@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             goToGenerateQr()
         }
         llHistory.setOnClickListener{
-
+            toHistory()
         }
         imgToHome.setOnClickListener {
             toHome()
@@ -51,8 +51,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             R.id.historyFragment -> {
                 navController.navigate(R.id.action_historyFragment_to_generateFragment)
             }
-            R.id.historyFragment -> {
-                navController.navigate(R.id.action_historyFragment_to_generateFragment)
+            R.id.resultFragment -> {
+                navController.navigate(R.id.action_resultFragment_to_generateFragment)
             }
             else -> {
             }
@@ -64,8 +64,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             R.id.generateFragment -> {
                 navController.popBackStack(R.id.qrScanFragment, false)
             }
+            R.id.resultFragment -> {
+                navController.navigate(R.id.action_resultFragment_to_qrScanFragment)
+            }
+            R.id.historyFragment -> {
+                navController.navigate(R.id.action_historyFragment_to_qrScanFragment)
+            }
+            else -> {
+            }
+        }
+    }
+
+    private fun toHistory(){
+        when (navController.currentDestination?.id) {
+            R.id.qrScanFragment -> {
+                navController.navigate(R.id.action_qrScanFragment_to_historyFragment)
+            }
             R.id.generateFragment -> {
-                binding.tvGenerateQr.setTextColor(Color.YELLOW)
+                navController.navigate(R.id.action_generateFragment_to_historyFragment)
+            }
+            R.id.resultFragment -> {
+                navController.navigate(R.id.action_resultFragment_to_historyFragment)
             }
             else -> {
             }

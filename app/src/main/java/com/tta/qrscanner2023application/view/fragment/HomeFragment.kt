@@ -19,6 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private var cameraSource: CameraSource? = null
     private val REQUEST_CAMERA_PERMISSION = 201
     private var intentData = ""
+    override var isTerminalBackKeyActive: Boolean = false
 
     override fun getDataBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 

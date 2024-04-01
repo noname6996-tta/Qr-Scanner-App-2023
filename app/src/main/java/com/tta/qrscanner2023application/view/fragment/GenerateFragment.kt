@@ -7,7 +7,7 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.databinding.FragmentGenerateBinding
 
 class GenerateFragment : BaseFragment<FragmentGenerateBinding>() {
-
+    override var isTerminalBackKeyActive: Boolean = false
     private val WRITE_EXTERNAL_STORAGE_REQUEST = 123
     private var imageBitmapResource: Bitmap? = null
 

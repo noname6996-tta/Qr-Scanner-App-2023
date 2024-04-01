@@ -1,9 +1,15 @@
 package com.tta.qrscanner2023application.view.fragment
 
+import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.provider.Settings
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.fitnessapplication.view.base.BaseFragment
@@ -11,12 +17,15 @@ import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.copyToClipboard
 import com.tta.qrscanner2023application.data.util.generateQrCode
 import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
+import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
+    override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
+    private val WRITE_EXTERNAL_STORAGE_REQUEST = 123
     override fun getDataBinding(): FragmentResultBinding {
         return FragmentResultBinding.inflate(layoutInflater)
     }
@@ -26,6 +35,8 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         result.text = args.text
         imgQr.setImageBitmap(generateQrCode(args.text))
         imageBitmapResoure = generateQrCode(args.text)
+        llAction.actionShare.root.visibility = View.GONE
+        llAction.actionSave.root.visibility = View.GONE
         setViewActionQr(args.text)
     }
 
@@ -37,18 +48,22 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         }
     }
 
-    private fun checkImgVis() = with(binding){
+    private fun checkImgVis() = with(binding) {
         if (imgQr.visibility == View.VISIBLE) {
             imgQr.visibility = View.GONE
             tvShowQr.text = "Show Qr code"
+            llAction.actionShare.root.visibility = View.GONE
+            llAction.actionSave.root.visibility = View.GONE
         } else {
             imgQr.visibility = View.VISIBLE
-            tvShowQr.text = "Hode Qr code"
+            tvShowQr.text = "Hide Qr code"
+            llAction.actionShare.root.visibility = View.VISIBLE
+            llAction.actionSave.root.visibility = View.VISIBLE
         }
     }
 
-    private fun setViewActionQr(result : String) = with(binding){
-        with(llAction){
+    private fun setViewActionQr(result: String) = with(binding) {
+        with(llAction) {
 
             /* copy action */
             actionCopy.tvTittle.text = "Copy"
@@ -85,10 +100,59 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
             }
 
             /* save action */
-            actionSave.tvTittle.text = "Save"
+            actionSave.tvTittle.text = "Save QrCode"
             actionSave.imgIcon.setImageResource(R.drawable.ic_save)
             actionSave.llItem.setOnClickListener {
+                // Check for permission
+                if (ContextCompat.checkSelfPermission(
+                        requireActivity(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // Permission is not granted
+                    // Request the permission
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        WRITE_EXTERNAL_STORAGE_REQUEST
+                    )
+                } else {
+                    // Permission has already been granted
+                    // Proceed with the image saving process
+                    imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
+                }
+            }
+        }
+    }
 
+    // Override the onRequestPermissionsResult method to handle the result of the permission request
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            WRITE_EXTERNAL_STORAGE_REQUEST -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission is granted, proceed with the image saving process
+                    imageBitmapResoure?.let { saveImage(requireActivity(), binding.root, it) }
+                } else {
+                    // Permission is denied, handle this according to your app's logic
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage("Please grant permission to save image for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
+                    builder.setPositiveButton("OK") { dialog, which ->
+                        // Execute Intent to Launch Application Details Settings
+                        val intent = Intent(
+                            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.parse("package:${requireContext().packageName}")
+                        )
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
+                }
+                return
             }
         }
     }

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_qrScanFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_qrScanFragment_self"
+            app:destination="@id/qrScanFragment" />
     </fragment>
     <fragment
         android:id="@+id/generateFragment"
@@ -43,6 +46,9 @@
         <action
             android:id="@+id/action_historyFragment_to_generateFragment"
             app:destination="@id/generateFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_qrScanFragment"
+            app:destination="@id/qrScanFragment" />
     </fragment>
     <fragment
         android:id="@+id/generateCodeFragment"
@@ -61,6 +67,15 @@
         <argument
             android:name="text"
             app:argType="string" />
+        <action
+            android:id="@+id/action_resultFragment_to_qrScanFragment"
+            app:destination="@id/qrScanFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_generateFragment"
+            app:destination="@id/generateFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
