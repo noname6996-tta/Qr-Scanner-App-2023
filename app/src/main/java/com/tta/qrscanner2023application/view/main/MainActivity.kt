@@ -1,10 +1,11 @@
-package com.tta.qrscanner2023application
+package com.tta.qrscanner2023application.view.main
 
 import android.graphics.Color
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.tta.fitnessapplication.view.base.BaseActivity
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {

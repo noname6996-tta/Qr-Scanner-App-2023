@@ -10,4 +10,40 @@
         android:layout_height="match_parent"
         app:zxing_scanner_layout="@layout/fragment_custom_scan_code" />
 
+    <LinearLayout
+        android:id="@+id/clSetting"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/border_main_color_8dp"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgChoosePic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="6dp"
+            android:src="@drawable/ic_choose_pic" />
+
+        <ImageView
+            android:id="@+id/imgFlash"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="6dp"
+            android:src="@drawable/ic_flash" />
+
+        <ImageView
+            android:id="@+id/imgSetting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="6dp"
+            android:src="@drawable/ic_settings" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

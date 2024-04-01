@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.Settings
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
@@ -119,6 +120,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
                 } else {
                     // Permission has already been granted
                     // Proceed with the image saving process
+                    Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
                     imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
                 }
             }

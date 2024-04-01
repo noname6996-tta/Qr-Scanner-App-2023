@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/main_color_dark" /> <!-- Màu xám -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/main_color_dark" /> <!-- Viền dày 1dp, màu đen -->
+    <corners android:radius="8dp" /> <!-- Bo góc 4 cạnh 8dp -->
+</shape>

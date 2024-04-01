@@ -3,11 +3,13 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
     namespace = "com.tta.qrscanner2023application"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.tta.qrscanner2023application"
         minSdk = 24
@@ -75,4 +77,15 @@ dependencies {
     implementation ("com.guolindev.permissionx:permissionx:1.7.1")
     // zxing
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    //
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // Hilt
+    implementation ("com.google.dagger:hilt-android:2.40.5")
+    kapt ("com.google.dagger:hilt-android-compiler:2.40.5")
 }
