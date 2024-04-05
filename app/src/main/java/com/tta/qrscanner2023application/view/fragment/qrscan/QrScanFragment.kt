@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.qrscan
 
 import android.Manifest
 import android.app.Activity
@@ -23,10 +23,9 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
-import com.tta.qrscanner2023application.data.util.turnOffFlash
-import com.tta.qrscanner2023application.data.util.turnOnFlash
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
+import com.tta.qrscanner2023application.view.fragment.QrScanFragmentDirections
 
 class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
@@ -58,6 +57,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override fun initView() {
         super.initView()
         checkPermissions(requireContext())
+        isFlashOn = false
     }
 
     override fun addEvent() = with(binding) {
@@ -70,11 +70,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
             }
         }
         imgFlash.setOnClickListener {
-//            if (isFlashOn) {
-//                turnOffFlash(requireContext())
-//            } else {
-//                turnOnFlash(requireContext())
-//            }
+//            barcodeView.setTorchOn()
         }
         imgSetting.setOnClickListener {
             findNavController().navigate(R.id.action_qrScanFragment_to_settingFragment)
@@ -83,7 +79,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
 
     override var onPermissionSuccess: () -> Unit =
         {
-            val formats = listOf(BarcodeFormat.QR_CODE)
+            val formats = listOf(BarcodeFormat.QR_CODE, BarcodeFormat.DATA_MATRIX, BarcodeFormat.PDF_417, BarcodeFormat.MAXICODE, BarcodeFormat.ITF)
             binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
             binding.barcodeView.decodeContinuous(callback)
             canOpenExternalImage = true

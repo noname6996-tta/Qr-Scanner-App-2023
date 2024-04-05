@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/qrScanFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.QrScanFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.qrscan.QrScanFragment"
         android:label="QrScanFragment"
         tools:layout="@layout/fragment_qr_scan">
         <action

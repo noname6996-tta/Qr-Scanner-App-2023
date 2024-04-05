@@ -123,4 +123,9 @@ abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
                 dialog.show()
             }
         }
+
+    private fun hasFlash(): Boolean {
+        return requireActivity().applicationContext.packageManager
+            .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+    }
 }
