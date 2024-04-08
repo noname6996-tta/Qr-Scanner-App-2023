@@ -1,7 +1,7 @@
 package com.tta.qrscanner2023application.view.main
 
-import android.graphics.Color
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.tta.fitnessapplication.view.base.BaseActivity
@@ -90,5 +90,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             else -> {
             }
         }
+    }
+
+    fun setVisibleBottomBar(visible : Boolean){
+        binding.imgToHome.isVisible = visible
+        binding.cardView.isVisible = visible
     }
 }

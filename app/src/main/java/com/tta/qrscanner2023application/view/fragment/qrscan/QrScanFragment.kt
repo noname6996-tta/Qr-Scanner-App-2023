@@ -25,7 +25,7 @@ import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
-import com.tta.qrscanner2023application.view.fragment.QrScanFragmentDirections
+import com.tta.qrscanner2023application.view.main.MainActivity
 
 class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
@@ -57,7 +57,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override fun initView() {
         super.initView()
         checkPermissions(requireContext())
-        isFlashOn = false
+        (requireActivity() as MainActivity).setVisibleBottomBar(true)
     }
 
     override fun addEvent() = with(binding) {
@@ -70,9 +70,11 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
             }
         }
         imgFlash.setOnClickListener {
-//            barcodeView.setTorchOn()
+            isFlashOn = !isFlashOn
+            checkFlashOn()
         }
         imgSetting.setOnClickListener {
+            (requireActivity() as MainActivity).setVisibleBottomBar(false)
             findNavController().navigate(R.id.action_qrScanFragment_to_settingFragment)
         }
     }
@@ -164,6 +166,16 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
         }
     }
 
+    private fun checkFlashOn() = with(binding){
+        if (isFlashOn){
+            barcodeView.setTorchOn()
+            binding.imgFlash.setImageResource(R.drawable.ic_flash_on)
+        } else {
+            barcodeView.setTorchOff()
+            binding.imgFlash.setImageResource(R.drawable.ic_flash)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         binding.barcodeView.resume()
@@ -171,6 +183,9 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
 
     override fun onPause() {
         super.onPause()
+        isFlashOn = false
+        binding.imgFlash.setImageResource(R.drawable.ic_flash)
+        binding.barcodeView.setTorchOff()
         binding.barcodeView.pause()
     }
 }

@@ -79,7 +79,8 @@ abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
         private const val REQUEST_CODE_CAMERA_PERMISSION = 200
         var PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.VIBRATE
         )
     }
 

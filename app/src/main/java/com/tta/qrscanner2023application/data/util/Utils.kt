@@ -1,5 +1,6 @@
 package com.tta.qrscanner2023application.data.util
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.ContentValues
@@ -11,6 +12,8 @@ import android.hardware.camera2.CameraManager
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
@@ -176,4 +179,19 @@ fun isWebLinkOrAppLink(input: String): Boolean {
     val appLinkPattern = "^myapp://.*".toRegex()
 
     return input.matches(webLinkPattern) || input.matches(appLinkPattern)
+}
+
+fun Activity.vibratePhone() {
+    val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        vibrator.vibrate(
+            VibrationEffect.createOneShot(
+                100,
+                VibrationEffect.DEFAULT_AMPLITUDE
+            )
+        )
+    } else {
+        @Suppress("DEPRECATION")
+        vibrator.vibrate(100)
+    }
 }
