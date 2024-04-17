@@ -25,15 +25,21 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
+import com.tta.qrscanner2023application.view.main.MainActivity
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
-    private val viewModel: QrScanViewModel by viewModels()
+    private lateinit var viewModel: QrScanViewModel
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
     private val WRITE_EXTERNAL_STORAGE_REQUEST = 123
     override fun getDataBinding(): FragmentResultBinding {
         return FragmentResultBinding.inflate(layoutInflater)
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+        viewModel = (requireActivity() as MainActivity).qrViewModel
     }
 
     override fun initView() = with(binding) {

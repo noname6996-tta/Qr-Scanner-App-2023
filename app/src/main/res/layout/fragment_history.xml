@@ -14,5 +14,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:scrollbars="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorColor="@color/main_color_light"
+        app:tabIndicatorGravity="bottom"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/main_color_dark"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

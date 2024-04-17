@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.HistoryFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.history.HistoryFragment"
         android:label="HistoryFragment"
         tools:layout="@layout/fragment_history" >
         <action
