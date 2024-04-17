@@ -11,18 +11,23 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.model.QrCodeEntity
+import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.data.util.copyToClipboard
 import com.tta.qrscanner2023application.data.util.generateQrCode
 import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
 import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
+import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
+    private val viewModel: QrScanViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
@@ -34,6 +39,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
     override fun initView() = with(binding) {
         super.initView()
         result.text = args.text
+        insertQrCodeScan(args.text)
         imgQr.setImageBitmap(generateQrCode(args.text))
         imageBitmapResoure = generateQrCode(args.text)
         llAction.actionShare.root.visibility = View.GONE
@@ -157,5 +163,10 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
                 return
             }
         }
+    }
+
+    private fun insertQrCodeScan(code: String) {
+        val scan = QrCodeEntity(1, code, "", TypeCode.SCAN)
+        viewModel.insertQrCode(scan)
     }
 }

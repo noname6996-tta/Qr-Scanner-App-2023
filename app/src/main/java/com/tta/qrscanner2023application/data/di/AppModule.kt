@@ -11,10 +11,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideApplication(@ApplicationContext app: Context): QrScannerApp {
         return app as QrScannerApp
     }
