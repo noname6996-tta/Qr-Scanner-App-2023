@@ -7,6 +7,10 @@ import androidx.navigation.fragment.navArgs
 import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.data.util.QRCode
 import com.tta.qrscanner2023application.data.util.QRForm
+import com.tta.qrscanner2023application.data.util.QRForm.generateFacebookLink
+import com.tta.qrscanner2023application.data.util.QRForm.generateInstagramLink
+import com.tta.qrscanner2023application.data.util.QRForm.generateTwitterLink
+import com.tta.qrscanner2023application.data.util.QRForm.generateWifiString
 import com.tta.qrscanner2023application.databinding.FragmentGenerateCodeBinding
 import com.tta.qrscanner2023application.view.main.MainActivity
 
@@ -62,20 +66,26 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
                 }
 
                 QRCode.WIFI.type -> {
-
+                    val pass = edtText1.text.toString()
+                    val wifi = edtText1.text.toString()
+                    result = generateWifiString(wifi, pass)
                 }
 
                 QRCode.FACEBOOK.type -> {
-
+                    result = generateFacebookLink(edtText2.text.toString())
                 }
 
                 QRCode.INSTAGRAM.type -> {
-
+                    result = generateInstagramLink(edtText2.text.toString())
                 }
 
                 QRCode.TWITTER.type -> {
-
+                    result = generateTwitterLink(edtText2.text.toString())
                 }
+            }
+
+            if (result.isNotEmpty()) {
+                findNavController().navigate(GenerateCodeFragmentDirections.actionGenerateCodeFragmentToShowQrFragment(result))
             }
         }
     }

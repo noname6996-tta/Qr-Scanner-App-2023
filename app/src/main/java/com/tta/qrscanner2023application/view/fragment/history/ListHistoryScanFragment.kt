@@ -4,7 +4,7 @@ import android.widget.Toast
 import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 
-class ListHistoryFragment (type : Int) : BaseFragment<FragmentListHistoryBinding>() {
+class ListHistoryScanFragment (type : Int) : BaseFragment<FragmentListHistoryBinding>() {
     private val type = type
     override var isTerminalBackKeyActive: Boolean = false
     override fun getDataBinding(): FragmentListHistoryBinding {

@@ -89,5 +89,9 @@
         android:id="@+id/showQrFragment"
         android:name="com.tta.qrscanner2023application.view.fragment.ShowQrFragment"
         android:label="ShowQrFragment"
-        tools:layout="@layout/fragment_show_qr"/>
+        tools:layout="@layout/fragment_show_qr">
+        <argument
+            android:name="result"
+            app:argType="string" />
+    </fragment>
 </navigation>

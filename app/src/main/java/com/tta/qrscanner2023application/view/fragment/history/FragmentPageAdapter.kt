@@ -12,7 +12,7 @@ class FragmentPageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle
 
     override fun createFragment(position: Int): Fragment {
         return if (position == 0)
-            ListHistoryFragment(position)
-        else ListHistoryFragment(position)
+            ListHistoryScanFragment(position)
+        else ListHistoryCreateFragment(position)
     }
 }
