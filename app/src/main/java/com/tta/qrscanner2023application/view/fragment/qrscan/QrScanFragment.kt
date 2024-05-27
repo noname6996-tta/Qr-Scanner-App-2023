@@ -63,7 +63,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     override fun addEvent() = with(binding) {
         super.addEvent()
         imgChoosePic.setOnClickListener {
-            if (canOpenExternalImage) {
+            if (canOpenExternalImage || android.os.Build.VERSION.SDK_INT >= 13) {
                 openGallery()
             } else {
                 checkPermission()

@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_generateCodeFragment_to_showQrFragment"
             app:destination="@id/showQrFragment" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
