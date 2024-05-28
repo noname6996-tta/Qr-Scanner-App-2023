@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
@@ -116,24 +117,29 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
             actionSave.tvTittle.text = "Save QrCode"
             actionSave.imgIcon.setImageResource(R.drawable.ic_save)
             actionSave.llItem.setOnClickListener {
-                // Check for permission
-                if (ContextCompat.checkSelfPermission(
-                        requireActivity(),
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    // Permission is not granted
-                    // Request the permission
-                    ActivityCompat.requestPermissions(
-                        requireActivity(),
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        WRITE_EXTERNAL_STORAGE_REQUEST
-                    )
-                } else {
-                    // Permission has already been granted
-                    // Proceed with the image saving process
-                    Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
+                if (Build.VERSION.SDK_INT >= 13){
                     imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
+                    Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
+                } else {
+                    // Check for permission
+                    if (ContextCompat.checkSelfPermission(
+                            requireActivity(),
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        // Permission is not granted
+                        // Request the permission
+                        ActivityCompat.requestPermissions(
+                            requireActivity(),
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                            WRITE_EXTERNAL_STORAGE_REQUEST
+                        )
+                    } else {
+                        // Permission has already been granted
+                        // Proceed with the image saving process
+                        Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
+                        imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
+                    }
                 }
             }
         }

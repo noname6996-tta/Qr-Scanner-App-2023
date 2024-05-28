@@ -18,6 +18,6 @@ class ListHistoryCreateFragment (type : Int) : BaseFragment<FragmentListHistoryB
 
     override fun onResume() {
         super.onResume()
-        Toast.makeText(requireContext(), type.toString(), Toast.LENGTH_LONG).show()
+
     }
 }

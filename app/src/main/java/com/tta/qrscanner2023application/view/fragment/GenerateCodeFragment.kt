@@ -66,7 +66,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
                 }
 
                 QRCode.WIFI.type -> {
-                    val pass = edtText1.text.toString()
+                    val pass = edtText2.text.toString()
                     val wifi = edtText1.text.toString()
                     result = generateWifiString(wifi, pass)
                 }
