@@ -178,7 +178,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
     }
 
     private fun insertQrCodeScan(code: String) {
-        val scan = QrCodeEntity(1, code, "", TypeCode.SCAN)
+        val scan = QrCodeEntity(0, code, "", TypeCode.SCAN)
         viewModel.insertQrCode(scan)
     }
 }

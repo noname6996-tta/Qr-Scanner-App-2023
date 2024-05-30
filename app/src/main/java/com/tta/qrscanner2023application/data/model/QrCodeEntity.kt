@@ -9,7 +9,6 @@ import javax.annotation.Nonnull
 @Entity(tableName = Constants.TABLE_NAME)
 data class QrCodeEntity(
     @PrimaryKey(autoGenerate = true)
-    @Nonnull
     @ColumnInfo(name = Constants.COLUMN_ID) val id: Int,
     @ColumnInfo(name = Constants.COLUMN_CODE) val code: String,
     @ColumnInfo(name = Constants.COLUMN_CREATED_TIME) val createdTime: String,
