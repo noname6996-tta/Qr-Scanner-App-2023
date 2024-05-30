@@ -16,7 +16,10 @@ import javax.inject.Inject
 class QrScanViewModel @Inject constructor(
     private val repository: QrCodeRepository
 ) : ViewModel() {
-    val listQrCode = MutableLiveData<List<QrCodeEntity>>()
+    val listQrCodeScan = MutableLiveData<List<QrCodeEntity>>()
+    val listQrCodeCreate = MutableLiveData<List<QrCodeEntity>>()
+    val deleteScanQrCode = MutableLiveData<Boolean>()
+    val deleteCreateQrCode = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
     fun getListQrByType(typeCode: TypeCode) {
         viewModelScope.launch {
@@ -26,7 +29,11 @@ class QrScanViewModel @Inject constructor(
                 }
             }
                 .onSuccess {
-                    listQrCode.value = repository.getAllQrList(typeCode)
+                    if (typeCode == TypeCode.CREATED) {
+                        listQrCodeCreate.value = repository.getAllQrList(typeCode)
+                    } else {
+                        listQrCodeScan.value = repository.getAllQrList(typeCode)
+                    }
                 }
                 .onFailure {
                     errorMessage.value = it.message.toString()
@@ -40,7 +47,7 @@ class QrScanViewModel @Inject constructor(
         }
     }
 
-    fun deleteQrCode(id: Int) {
+    fun deleteQrCode(typeCode: TypeCode,id: Int) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -48,7 +55,10 @@ class QrScanViewModel @Inject constructor(
                 }
             }
                 .onSuccess {
-                    errorMessage.value = "Success"
+                    if (typeCode == TypeCode.SCAN){
+                        deleteScanQrCode.value = true
+                    } else
+                    deleteCreateQrCode.value = true
                 }
                 .onFailure {
                     errorMessage.value = it.message.toString()

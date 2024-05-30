@@ -20,13 +20,16 @@ class ListHistoryCreateFragment(type: Int) : BaseFragment<FragmentListHistoryBin
 
     override fun addObservers() {
         super.addObservers()
-        viewModel.listQrCode.observe(viewLifecycleOwner) {
+        viewModel.listQrCodeCreate.observe(viewLifecycleOwner) {
             historyAdapter.setListHistory(it, requireContext())
-            historyAdapter.notifyDataSetChanged()
         }
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            historyAdapter.notifyDataSetChanged()
+        viewModel.deleteCreateQrCode.observe(viewLifecycleOwner) {
+            if (it){
+                viewModel.getListQrByType(TypeCode.CREATED)
+                Toast.makeText(requireContext(), "Xóa thành công", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -50,7 +53,7 @@ class ListHistoryCreateFragment(type: Int) : BaseFragment<FragmentListHistoryBin
     override fun addEvent() {
         super.addEvent()
         historyAdapter.deleteItem {
-            viewModel.deleteQrCode(it)
+            viewModel.deleteQrCode(TypeCode.CREATED,it)
         }
     }
 }
