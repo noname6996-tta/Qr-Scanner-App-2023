@@ -15,4 +15,5 @@ class QrCodeRepositoryImpl @Inject constructor(
     override suspend fun insertQr(qrCodeEntity: QrCodeEntity) = dao.insert(qrCodeEntity)
 
     override suspend fun deleteQrById(id: Int) = dao.deleteQrCodeWithID(id)
+    override suspend fun getInfoById(id: Int) = dao.getInfoByID(id)
 }

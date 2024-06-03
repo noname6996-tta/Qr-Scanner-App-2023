@@ -23,6 +23,7 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.util.vibratePhone
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
 import com.tta.qrscanner2023application.view.main.MainActivity
@@ -34,6 +35,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     private var isFlashOn = false
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
+            requireActivity().vibratePhone()
             if (result?.text == null || result.text == lastText) {
                 return
             }

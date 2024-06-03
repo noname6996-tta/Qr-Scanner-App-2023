@@ -7,4 +7,6 @@ interface QrCodeRepository {
     suspend fun getAllQrList(typeCode: TypeCode): List<QrCodeEntity>
     suspend fun insertQr(qrCodeEntity: QrCodeEntity): Unit
     suspend fun deleteQrById(id: Int): Unit
+
+    suspend fun getInfoById(id: Int): QrCodeEntity
 }

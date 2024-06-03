@@ -23,6 +23,11 @@ class HistoryAdapter :
         onClickDeleteData = position
     }
 
+    private var onClickShowData: ((i: Int) -> Unit)? = null
+    fun showInfo(position: ((i: Int) -> Unit)) {
+        onClickShowData = position
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -39,6 +44,11 @@ class HistoryAdapter :
         holder.binding.date.text = someThingToEat.createdTime
         holder.binding.imageView2.setOnClickListener {
             onClickDeleteData?.let {
+                it(position)
+            }
+        }
+        holder.binding.clItem.setOnClickListener {
+            onClickShowData?.let {
                 it(position)
             }
         }

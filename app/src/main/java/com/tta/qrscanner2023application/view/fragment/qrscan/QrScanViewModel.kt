@@ -18,9 +18,8 @@ class QrScanViewModel @Inject constructor(
 ) : ViewModel() {
     val listQrCodeScan = MutableLiveData<List<QrCodeEntity>>()
     val listQrCodeCreate = MutableLiveData<List<QrCodeEntity>>()
-    val deleteScanQrCode = MutableLiveData<Boolean>()
-    val deleteCreateQrCode = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
+    val qrCodeEntity = MutableLiveData<QrCodeEntity>()
     fun getListQrByType(typeCode: TypeCode) {
         viewModelScope.launch {
             runCatching {
@@ -30,9 +29,9 @@ class QrScanViewModel @Inject constructor(
             }
                 .onSuccess {
                     if (typeCode == TypeCode.CREATED) {
-                        listQrCodeCreate.value = repository.getAllQrList(typeCode)
+                        listQrCodeCreate.value = it
                     } else {
-                        listQrCodeScan.value = repository.getAllQrList(typeCode)
+                        listQrCodeScan.value = it
                     }
                 }
                 .onFailure {
@@ -47,18 +46,27 @@ class QrScanViewModel @Inject constructor(
         }
     }
 
-    fun deleteQrCode(typeCode: TypeCode,id: Int) {
+    fun deleteQrCode(typeCode: TypeCode, id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                repository.deleteQrById(id)
+            }.onSuccess {
+                getListQrByType(typeCode) // Reload the list after successful deletion
+            }.onFailure {
+                errorMessage.value = it.message.toString()
+            }
+        }
+    }
+
+    fun getInfoById(id: Int) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
-                    repository.deleteQrById(id)
+                    repository.getInfoById(id)
                 }
             }
                 .onSuccess {
-                    if (typeCode == TypeCode.SCAN){
-                        deleteScanQrCode.value = true
-                    } else
-                    deleteCreateQrCode.value = true
+                    qrCodeEntity.value = it
                 }
                 .onFailure {
                     errorMessage.value = it.message.toString()

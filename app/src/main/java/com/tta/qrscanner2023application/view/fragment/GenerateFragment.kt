@@ -35,9 +35,6 @@ class GenerateFragment : BaseFragment<FragmentGenerateBinding>() {
 
     override fun addEvent() = with(binding) {
         super.addEvent()
-        imgBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
         itemText.root.setOnClickListener {
             findNavController().navigate(GenerateFragmentDirections.actionGenerateFragmentToGenerateCodeFragment(QRCode.TEXT.type))
         }

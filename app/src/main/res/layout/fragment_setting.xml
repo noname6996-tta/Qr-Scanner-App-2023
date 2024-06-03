@@ -19,12 +19,48 @@
     <TextView
         android:id="@+id/textView"
         style="@style/TextView_White_20sp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Setting"
         android:textSize="24sp"
-        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
         app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_main_color_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_vibration_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleVibration"
+            style="@style/TextView_White_16sp"
+            android:layout_marginStart="16dp"
+            android:text="Vibration"
+            app:layout_constraintBottom_toTopOf="@+id/descVibration"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descVibration"
+            style="@style/TextView_White_14sp"
+            android:layout_marginStart="16dp"
+            android:text="Vibration when scan is done."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
