@@ -20,13 +20,14 @@
         android:id="@+id/textView"
         style="@style/TextView_White_20sp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Setting"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
         app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clVibration"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="16dp"
@@ -62,5 +63,117 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/vibrationSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbTint="@color/main_color_light"
+            app:trackTint="#686868" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSound"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_main_color_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clVibration">
+
+        <ImageView
+            android:id="@+id/imgSound"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_volume_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleSound"
+            style="@style/TextView_White_16sp"
+            android:layout_marginStart="16dp"
+            android:text="Beep"
+            app:layout_constraintBottom_toTopOf="@+id/descSound"
+            app:layout_constraintStart_toEndOf="@+id/imgSound"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descSound"
+            style="@style/TextView_White_14sp"
+            android:layout_marginStart="16dp"
+            android:text="Beep when scan is done."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgSound"
+            app:layout_constraintTop_toBottomOf="@+id/titleSound" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/soundSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbTint="@color/main_color_light"
+            app:trackTint="#686868" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/TextView_White_20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Support"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/imgBack"
+        app:layout_constraintTop_toBottomOf="@+id/clSound" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPrivacy"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_main_color_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <ImageView
+            android:id="@+id/imgPrivacy"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_privacy_tip_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titlePrivacy"
+            style="@style/TextView_White_16sp"
+            android:layout_marginStart="16dp"
+            android:text="Privacy Policy"
+            app:layout_constraintBottom_toTopOf="@+id/descPrivacy"
+            app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descPrivacy"
+            style="@style/TextView_White_14sp"
+            android:layout_marginStart="16dp"
+            android:text="Follow our policies that benefits you."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
+            app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

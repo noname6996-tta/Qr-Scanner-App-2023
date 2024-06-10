@@ -23,9 +23,11 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.util.playSound
 import com.tta.qrscanner2023application.data.util.vibratePhone
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
+import com.tta.qrscanner2023application.view.fragment.SettingViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
 class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
@@ -33,9 +35,17 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
     private var lastText: String = ""
     private var canOpenExternalImage = false
     private var isFlashOn = false
+    private lateinit var settingViewModel : SettingViewModel
+    private var isVibrationOn = false
+    private var isSoundOn = false
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
-            requireActivity().vibratePhone()
+            if (isVibrationOn){
+                requireActivity().vibratePhone()
+            }
+            if (isSoundOn){
+                playSound(requireActivity())
+            }
             if (result?.text == null || result.text == lastText) {
                 return
             }
@@ -54,6 +64,22 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
 
     override fun getDataBinding(): FragmentQrScanBinding {
         return FragmentQrScanBinding.inflate(layoutInflater)
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+        settingViewModel = SettingViewModel(requireContext())
+        settingViewModel.getData()
+    }
+
+    override fun addObservers() {
+        super.addObservers()
+        settingViewModel.soundData.observe(viewLifecycleOwner) {
+            isSoundOn = it
+        }
+        settingViewModel.vibrationData.observe(viewLifecycleOwner) {
+            isVibrationOn = it
+        }
     }
 
     override fun initView() {

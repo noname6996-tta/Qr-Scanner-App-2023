@@ -9,6 +9,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -23,6 +24,7 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import com.tta.qrscanner2023application.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -196,4 +198,9 @@ fun Activity.vibratePhone() {
         @Suppress("DEPRECATION")
         vibrator.vibrate(100)
     }
+}
+
+fun playSound(context: Context) {
+    val mediaPlayer = MediaPlayer.create(context, R.raw.done)
+    mediaPlayer.start()
 }

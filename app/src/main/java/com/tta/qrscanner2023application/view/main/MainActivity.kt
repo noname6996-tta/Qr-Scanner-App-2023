@@ -3,6 +3,8 @@ package com.tta.qrscanner2023application.view.main
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
