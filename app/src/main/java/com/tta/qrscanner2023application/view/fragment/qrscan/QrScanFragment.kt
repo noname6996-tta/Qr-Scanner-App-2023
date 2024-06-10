@@ -27,7 +27,7 @@ import com.tta.qrscanner2023application.data.util.playSound
 import com.tta.qrscanner2023application.data.util.vibratePhone
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
 import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
-import com.tta.qrscanner2023application.view.fragment.SettingViewModel
+import com.tta.qrscanner2023application.view.fragment.setting.SettingViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
 class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {

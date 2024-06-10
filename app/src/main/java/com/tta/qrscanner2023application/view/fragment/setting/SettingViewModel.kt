@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.setting
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData

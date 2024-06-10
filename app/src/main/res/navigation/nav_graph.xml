@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/generateFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.GenerateFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.generate.GenerateFragment"
         android:label="GenerateFragment"
         tools:layout="@layout/fragment_generate" >
         <action
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/generateCodeFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.GenerateCodeFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.generate.GenerateCodeFragment"
         android:label="GenerateCodeFragment"
         tools:layout="@layout/fragment_generate_code">
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.ResultFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.qrscan.ResultFragment"
         android:label="ResultFragment"
         tools:layout="@layout/fragment_result">
         <argument
@@ -85,12 +85,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.SettingFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"/>
     <fragment
         android:id="@+id/showQrFragment"
-        android:name="com.tta.qrscanner2023application.view.fragment.ShowQrFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.generate.ShowQrFragment"
         android:label="ShowQrFragment"
         tools:layout="@layout/fragment_show_qr">
         <argument

@@ -46,10 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     "Cancel"
                 )
             }
-            .request { allGranted, grantedList, deniedList ->
-                if (allGranted) {
-
-                } else {
+            .request { allGranted, _, deniedList ->
+                if (!allGranted) {
                     Toast.makeText(
                         requireContext(),
                         "These permissions are denied: $deniedList",

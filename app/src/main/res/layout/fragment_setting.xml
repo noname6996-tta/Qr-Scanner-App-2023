@@ -11,6 +11,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/back"
         android:padding="10dp"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +22,7 @@
         style="@style/TextView_White_20sp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Setting"
+        android:text="@string/setting"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
         app:layout_constraintTop_toBottomOf="@+id/imgBack" />
@@ -41,6 +42,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/vibration"
             android:src="@drawable/baseline_vibration_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +52,7 @@
             android:id="@+id/titleVibration"
             style="@style/TextView_White_16sp"
             android:layout_marginStart="16dp"
-            android:text="Vibration"
+            android:text="@string/vibration"
             app:layout_constraintBottom_toTopOf="@+id/descVibration"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +61,7 @@
             android:id="@+id/descVibration"
             style="@style/TextView_White_14sp"
             android:layout_marginStart="16dp"
-            android:text="Vibration when scan is done."
+            android:text="@string/vibration_done"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
@@ -92,6 +94,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/sound"
             android:src="@drawable/baseline_volume_up_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +104,7 @@
             android:id="@+id/titleSound"
             style="@style/TextView_White_16sp"
             android:layout_marginStart="16dp"
-            android:text="Beep"
+            android:text="@string/sound"
             app:layout_constraintBottom_toTopOf="@+id/descSound"
             app:layout_constraintStart_toEndOf="@+id/imgSound"
             app:layout_constraintTop_toTopOf="parent" />
@@ -110,7 +113,7 @@
             android:id="@+id/descSound"
             style="@style/TextView_White_14sp"
             android:layout_marginStart="16dp"
-            android:text="Beep when scan is done."
+            android:text="@string/sound_desc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgSound"
             app:layout_constraintTop_toBottomOf="@+id/titleSound" />
@@ -133,7 +136,7 @@
         style="@style/TextView_White_20sp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Support"
+        android:text="@string/support"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
         app:layout_constraintTop_toBottomOf="@+id/clSound" />
@@ -153,6 +156,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/support"
             android:src="@drawable/baseline_privacy_tip_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +166,7 @@
             android:id="@+id/titlePrivacy"
             style="@style/TextView_White_16sp"
             android:layout_marginStart="16dp"
-            android:text="Privacy Policy"
+            android:text="@string/privacy_policy"
             app:layout_constraintBottom_toTopOf="@+id/descPrivacy"
             app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
             app:layout_constraintTop_toTopOf="parent" />
@@ -171,7 +175,7 @@
             android:id="@+id/descPrivacy"
             style="@style/TextView_White_14sp"
             android:layout_marginStart="16dp"
-            android:text="Follow our policies that benefits you."
+            android:text="@string/privacy_desc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
             app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />

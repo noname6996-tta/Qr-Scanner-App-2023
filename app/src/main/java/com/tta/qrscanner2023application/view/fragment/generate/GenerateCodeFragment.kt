@@ -1,10 +1,11 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.generate
 
 import android.text.InputType
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.QRCode
 import com.tta.qrscanner2023application.data.util.QRForm
 import com.tta.qrscanner2023application.data.util.QRForm.generateFacebookLink
@@ -34,8 +35,8 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
         if (type == QRCode.WIFI.type) {
             textView2.isVisible = true
             edtText1.isVisible = true
-            textView2.text = "Network"
-            textView3.text = "Password"
+            textView2.text = getString(R.string.network)
+            textView3.text = getString(R.string.password)
         }
     }
 
@@ -85,7 +86,11 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
             }
 
             if (result.isNotEmpty()) {
-                findNavController().navigate(GenerateCodeFragmentDirections.actionGenerateCodeFragmentToShowQrFragment(result))
+                findNavController().navigate(
+                    GenerateCodeFragmentDirections.actionGenerateCodeFragmentToShowQrFragment(
+                        result
+                    )
+                )
             }
         }
     }
