@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
+abstract class BaseCameraFragment<T : ViewBinding> : Fragment()  {
     private var _binding: T? = null
     protected val binding: T
         get() = checkNotNull(_binding) {
@@ -76,7 +76,6 @@ abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
         _binding = null
     }
     companion object {
-        private const val REQUEST_CODE_CAMERA_PERMISSION = 200
         var PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -84,7 +83,7 @@ abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
         )
     }
 
-    abstract var onPermissionSuccess: () -> Unit
+    abstract var onSuccess: () -> Unit
 
     internal fun checkPermissions(context: Context) {
         if (ActivityCompat.checkSelfPermission(
@@ -92,23 +91,22 @@ abstract class BaseCameraPermissionFragment<T : ViewBinding> : Fragment()  {
                 Manifest.permission.CAMERA
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            permReqLauncher.launch(
+            permissionRequestLauncher.launch(
                 PERMISSIONS
             )
         } else {
-            onPermissionSuccess.invoke()
+            onSuccess.invoke()
         }
     }
 
-    private val permReqLauncher =
+    private val permissionRequestLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val granted = permissions.entries.all {
                 it.value
             }
             if (granted) {
-                onPermissionSuccess.invoke()
-            } else if (permissions.entries.filter { it.key == Manifest.permission.CAMERA }
-                    .isNotEmpty()) {
+                onSuccess.invoke()
+            } else if (permissions.entries.any { it.key == Manifest.permission.CAMERA }) {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setMessage("Please grant permission to use the camera for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
                 builder.setPositiveButton("OK") { dialog, which ->
