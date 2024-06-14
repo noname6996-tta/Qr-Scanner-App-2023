@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QrTta Scan</string>
+    <string name="network">Net work</string>
+    <string name="password">Pass word</string>
+    <string name="text">Text</string>
+    <string name="phone">Phone</string>
+    <string name="website">Website</string>
+    <string name="facebook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="x">X</string>
+    <string name="wifi">Wifi</string>
+    <string name="back">Back</string>
+    <string name="result">Result</string>
+    <string name="icon_qr">Icon QR</string>
+    <string name="generate_qr_code">Generate QR Code</string>
+    <string name="history">History</string>
+</resources>

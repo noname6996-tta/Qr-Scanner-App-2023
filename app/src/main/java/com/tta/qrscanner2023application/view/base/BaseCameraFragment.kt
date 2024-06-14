@@ -109,7 +109,7 @@ abstract class BaseCameraFragment<T : ViewBinding> : Fragment()  {
             } else if (permissions.entries.any { it.key == Manifest.permission.CAMERA }) {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setMessage("Please grant permission to use the camera for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
-                builder.setPositiveButton("OK") { dialog, which ->
+                builder.setPositiveButton("OK") { _, _ ->
                     // Execute Intent to Launch Application Details Settings
                     val intent = Intent(
                         Settings.ACTION_APPLICATION_DETAILS_SETTINGS,

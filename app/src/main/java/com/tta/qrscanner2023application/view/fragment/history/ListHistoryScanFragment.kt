@@ -5,7 +5,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tta.fitnessapplication.view.base.BaseFragment
-import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
@@ -33,7 +32,11 @@ class ListHistoryScanFragment(type: Int) : BaseFragment<FragmentListHistoryBindi
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
         viewModel.qrCodeEntity.observe(viewLifecycleOwner) {
-            findNavController().navigate(HistoryFragmentDirections.actionHistoryFragmentToShowQrFragment(it.code))
+            findNavController().navigate(
+                HistoryFragmentDirections.actionHistoryFragmentToShowQrFragment(
+                    it.code
+                )
+            )
         }
     }
 

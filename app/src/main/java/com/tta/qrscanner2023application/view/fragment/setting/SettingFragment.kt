@@ -1,8 +1,11 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.setting
 
+import android.content.Intent
+import android.net.Uri
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.data.util.Constants
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
 import com.tta.qrscanner2023application.view.main.MainActivity
 
@@ -45,6 +48,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         clVibration.setOnClickListener {
             val isChecked = !binding.vibrationSwitch.isChecked
             viewModel.changeVibration(isChecked)
+        }
+        clPrivacy.setOnClickListener {
+            val url = Constants.PRIVACY_WEB
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
         }
     }
 }

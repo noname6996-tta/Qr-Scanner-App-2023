@@ -51,7 +51,7 @@ class ListHistoryCreateFragment(type: Int) : BaseFragment<FragmentListHistoryBin
     override fun addEvent() {
         super.addEvent()
         historyAdapter.deleteItem {
-            viewModel.deleteQrCode(TypeCode.CREATED,list[it].id)
+            viewModel.deleteQrCode(TypeCode.CREATED, list[it].id)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.qrscan
 
 import android.Manifest
 import android.app.AlertDialog
@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.fitnessapplication.view.base.BaseFragment
@@ -25,7 +24,6 @@ import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
 import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
-import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
@@ -117,7 +115,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
             actionSave.tvTittle.text = "Save QrCode"
             actionSave.imgIcon.setImageResource(R.drawable.ic_save)
             actionSave.llItem.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= 13){
+                if (Build.VERSION.SDK_INT >= 13) {
                     imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
                     Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
                 } else {

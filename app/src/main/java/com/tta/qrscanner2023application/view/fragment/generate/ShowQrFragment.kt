@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.fragment
+package com.tta.qrscanner2023application.view.fragment.generate
 
 import android.Manifest
 import android.app.AlertDialog
@@ -23,16 +23,9 @@ import com.tta.qrscanner2023application.data.util.generateQrCode
 import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
 import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
-import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
     private lateinit var viewModel: QrScanViewModel
@@ -123,7 +116,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
             actionSave.tvTittle.text = "Save QrCode"
             actionSave.imgIcon.setImageResource(R.drawable.ic_save)
             actionSave.llItem.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= 13){
+                if (Build.VERSION.SDK_INT >= 13) {
                     imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
                     Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
                 } else {
@@ -166,7 +159,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
                     // Permission is denied, handle this according to your app's logic
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setMessage("Please grant permission to save image for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
-                    builder.setPositiveButton("OK") { dialog, which ->
+                    builder.setPositiveButton("OK") { _, _ ->
                         // Execute Intent to Launch Application Details Settings
                         val intent = Intent(
                             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
