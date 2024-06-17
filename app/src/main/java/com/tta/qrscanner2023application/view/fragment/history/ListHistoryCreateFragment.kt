@@ -10,7 +10,7 @@ import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
-class ListHistoryCreateFragment(type: Int) : BaseFragment<FragmentListHistoryBinding>() {
+class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
     private var historyAdapter = HistoryAdapter()
     private var list = ArrayList<QrCodeEntity>()
     override var isTerminalBackKeyActive: Boolean = false
