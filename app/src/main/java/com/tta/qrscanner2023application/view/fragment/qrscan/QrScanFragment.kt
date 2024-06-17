@@ -26,11 +26,11 @@ import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.playSound
 import com.tta.qrscanner2023application.data.util.vibratePhone
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
-import com.tta.qrscanner2023application.view.base.BaseCameraPermissionFragment
+import com.tta.qrscanner2023application.view.base.BaseCameraFragment
 import com.tta.qrscanner2023application.view.fragment.setting.SettingViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
-class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
+class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
     private var lastText: String = ""
     private var canOpenExternalImage = false
@@ -107,7 +107,7 @@ class QrScanFragment : BaseCameraPermissionFragment<FragmentQrScanBinding>() {
         }
     }
 
-    override var onPermissionSuccess: () -> Unit =
+    override var onSuccess: () -> Unit =
         {
             val formats = listOf(BarcodeFormat.QR_CODE, BarcodeFormat.DATA_MATRIX, BarcodeFormat.PDF_417, BarcodeFormat.MAXICODE, BarcodeFormat.ITF)
             binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
