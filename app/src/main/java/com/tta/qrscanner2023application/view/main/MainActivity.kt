@@ -1,7 +1,9 @@
 package com.tta.qrscanner2023application.view.main
 
+import android.content.res.Configuration
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -10,6 +12,7 @@ import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -112,5 +115,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun setVisibleBottomBar(visible: Boolean) {
         binding.imgToHome.isVisible = visible
         binding.cardView.isVisible = visible
+    }
+
+    fun changeLanguage(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        // Áp dụng cài đặt thay đổi ngôn ngữ mà không cần recreate activity
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        delegate.applyDayNight()
     }
 }

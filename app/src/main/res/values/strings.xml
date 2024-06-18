@@ -30,4 +30,7 @@
     <string name="privacy_desc">Follow our policies that benefits you.</string>
     <string name="share">Share</string>
     <string name="icon_delete">icon delete</string>
+    <string name="language">Language</string>
+    <string name="string_vi">Vietnamese</string>
+    <string name="string_en">English</string>
 </resources>

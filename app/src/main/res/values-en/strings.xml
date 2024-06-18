@@ -15,4 +15,23 @@
     <string name="icon_qr">Icon QR</string>
     <string name="generate_qr_code">Generate QR Code</string>
     <string name="history">History</string>
+    <string name="not_found_qr">Not found QR Code</string>
+    <string name="choose_pic">choose Pic</string>
+    <string name="flash">flash</string>
+    <string name="setting">setting</string>
+    <string name="data">Data</string>
+    <string name="time_demo">2023-02-20</string>
+    <string name="show_qr_code">Show QR Code</string>
+    <string name="vibration">Vibration</string>
+    <string name="vibration_done">Vibration when scan is done.</string>
+    <string name="sound">Sound</string>
+    <string name="sound_desc">Beep when scan is done.</string>
+    <string name="support">Support</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_desc">Follow our policies that benefits you.</string>
+    <string name="share">Share</string>
+    <string name="icon_delete">icon delete</string>
+    <string name="language">Language</string>
+    <string name="string_vi">Vietnamese</string>
+    <string name="string_en">English</string>
 </resources>

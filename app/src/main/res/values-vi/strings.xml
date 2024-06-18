@@ -31,4 +31,7 @@
     <string name="privacy_desc">Follow our policies that benefits you.</string>
     <string name="share">Chia s</string>
     <string name="icon_delete">Ảnh xóa</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="string_vi">Tiếng Việt</string>
+    <string name="string_en">Tiếng Anh</string>
 </resources>
