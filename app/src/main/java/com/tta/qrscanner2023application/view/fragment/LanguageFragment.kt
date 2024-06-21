@@ -17,6 +17,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         super.addEvent()
         clEnglish.setOnClickListener {
             (requireActivity() as MainActivity).changeLanguage(Locale.ENGLISH.language)
+            findNavController().popBackStack()
         }
         clVietNamese.setOnClickListener {
             (requireActivity() as MainActivity).changeLanguage("vi")

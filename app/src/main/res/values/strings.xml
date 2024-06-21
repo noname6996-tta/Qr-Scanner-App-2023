@@ -17,7 +17,7 @@
     <string name="not_found_qr">Không thấy mã Qr</string>
     <string name="choose_pic">choose Pic</string>
     <string name="flash">flash</string>
-    <string name="setting">setting</string>
+    <string name="setting">Setting</string>
     <string name="data">Data</string>
     <string name="time_demo">2023-02-20</string>
     <string name="show_qr_code">Show QR Code</string>
@@ -33,4 +33,15 @@
     <string name="language">Language</string>
     <string name="string_vi">Vietnamese</string>
     <string name="string_en">English</string>
+    <string name="language_desc">Change language</string>
+    <string name="generate">Generate</string>
+    <string name="delete">Delete</string>
+    <string name="delete_desc">Delete all item in history</string>
+    <string name="qr_code_not_found">QR Code not found</string>
+    <string name="no_image_selected">No image selected</string>
+    <string name="permission_is_required_to_access_gallery">Permission is required to access gallery</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="all_data_deleted">All data deleted</string>
+    <string name="scan">Scan</string>
+    <string name="created">Created</string>
 </resources>

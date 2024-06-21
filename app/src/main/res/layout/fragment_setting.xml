@@ -131,6 +131,46 @@
             app:trackTint="#686868" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_main_color_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clSound">
+
+        <ImageView
+            android:id="@+id/imgLanguage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/sound"
+            android:src="@drawable/baseline_language_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleLanguage"
+            style="@style/TextView_White_16sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/language"
+            app:layout_constraintBottom_toTopOf="@+id/descLanguage"
+            app:layout_constraintStart_toEndOf="@+id/imgLanguage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descLanguage"
+            style="@style/TextView_White_14sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/language_desc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgLanguage"
+            app:layout_constraintTop_toBottomOf="@+id/titleLanguage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/textView2"
         style="@style/TextView_White_20sp"
@@ -139,7 +179,7 @@
         android:text="@string/support"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
-        app:layout_constraintTop_toBottomOf="@+id/clSound" />
+        app:layout_constraintTop_toBottomOf="@+id/clLanguage" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPrivacy"
@@ -179,5 +219,45 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
             app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDeleteAll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_main_color_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clPrivacy">
+
+        <ImageView
+            android:id="@+id/imgDeleteAll"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/support"
+            android:src="@drawable/baseline_delete_forever_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleDeleteAll"
+            style="@style/TextView_White_16sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toTopOf="@+id/descDeleteAll"
+            app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descDeleteAll"
+            style="@style/TextView_White_14sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/delete_desc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
+            app:layout_constraintTop_toBottomOf="@+id/titleDeleteAll" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

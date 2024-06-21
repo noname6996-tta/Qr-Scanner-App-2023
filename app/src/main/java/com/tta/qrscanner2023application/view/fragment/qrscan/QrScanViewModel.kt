@@ -73,4 +73,10 @@ class QrScanViewModel @Inject constructor(
                 }
         }
     }
+
+    fun deleteAllQrCode() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAll()
+        }
+    }
 }

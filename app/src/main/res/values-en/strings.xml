@@ -18,7 +18,7 @@
     <string name="not_found_qr">Not found QR Code</string>
     <string name="choose_pic">choose Pic</string>
     <string name="flash">flash</string>
-    <string name="setting">setting</string>
+    <string name="setting">Setting</string>
     <string name="data">Data</string>
     <string name="time_demo">2023-02-20</string>
     <string name="show_qr_code">Show QR Code</string>
@@ -34,4 +34,5 @@
     <string name="language">Language</string>
     <string name="string_vi">Vietnamese</string>
     <string name="string_en">English</string>
+    <string name="language_desc">Change language</string>
 </resources>

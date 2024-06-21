@@ -9,4 +9,5 @@ interface QrCodeRepository {
     suspend fun deleteQrById(id: Int): Unit
 
     suspend fun getInfoById(id: Int): QrCodeEntity
+    suspend fun deleteAll(): Unit
 }

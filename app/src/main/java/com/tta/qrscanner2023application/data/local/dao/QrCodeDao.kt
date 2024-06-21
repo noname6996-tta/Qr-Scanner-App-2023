@@ -17,4 +17,7 @@ interface QrCodeDao : BaseDao<QrCodeEntity> {
 
     @Query("SELECT * FROM ${Constants.TABLE_NAME} WHERE id = :id")
     suspend fun getInfoByID(id: Int) : QrCodeEntity
+
+    @Query("DELETE FROM ${Constants.TABLE_NAME}")
+    suspend fun deleteAllQrCodes()
 }

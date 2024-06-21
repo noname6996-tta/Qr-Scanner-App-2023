@@ -3,6 +3,7 @@ package com.tta.qrscanner2023application.view.fragment.history
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.FragmentHistoryBinding
 
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
@@ -20,8 +21,8 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     private fun initUiPager()  = with(binding){
         adapterPager = FragmentPageAdapter(requireActivity().supportFragmentManager, lifecycle)
 
-        tabLayout.addTab(tabLayout.newTab().setText("Scan"))
-        tabLayout.addTab(tabLayout.newTab().setText("Created"))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.scan)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.created)))
 
         viewPager2.adapter = adapterPager
 

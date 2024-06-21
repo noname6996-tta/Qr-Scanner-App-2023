@@ -16,4 +16,5 @@ class QrCodeRepositoryImpl @Inject constructor(
 
     override suspend fun deleteQrById(id: Int) = dao.deleteQrCodeWithID(id)
     override suspend fun getInfoById(id: Int) = dao.getInfoByID(id)
+    override suspend fun deleteAll() = dao.deleteAllQrCodes()
 }

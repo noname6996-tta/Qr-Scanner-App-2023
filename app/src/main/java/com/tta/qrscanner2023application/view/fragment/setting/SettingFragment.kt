@@ -5,13 +5,16 @@ import android.net.Uri
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.Constants
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
+import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override var isTerminalBackKeyActive: Boolean = true
     private lateinit var viewModel: SettingViewModel
+    private lateinit var viewModelQr: QrScanViewModel
     override fun getDataBinding(): FragmentSettingBinding {
         return FragmentSettingBinding.inflate(layoutInflater)
     }
@@ -19,6 +22,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override fun initViewModel() {
         super.initViewModel()
         viewModel = SettingViewModel(requireContext())
+        viewModelQr = (requireActivity() as MainActivity).qrViewModel
         viewModel.getData()
     }
 
@@ -54,6 +58,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             startActivity(intent)
+        }
+        clLanguage.setOnClickListener {
+            findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToLanguageFragment())
+        }
+        clDeleteAll.setOnClickListener {
+            viewModelQr.deleteAllQrCode()
+            Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT).show()
         }
     }
 }

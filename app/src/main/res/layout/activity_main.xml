@@ -80,7 +80,7 @@
                 <TextView
                     android:id="@+id/tvGenerateQr"
                     style="@style/TextView_White_14sp"
-                    android:text="Generater"
+                    android:text="@string/generate"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
                 <TextView
                     android:id="@+id/tvHistory"
                     style="@style/TextView_White_14sp"
-                    android:text="History"
+                    android:text="@string/history"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

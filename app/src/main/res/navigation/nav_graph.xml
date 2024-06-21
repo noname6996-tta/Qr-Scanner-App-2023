@@ -87,7 +87,11 @@
         android:id="@+id/settingFragment"
         android:name="com.tta.qrscanner2023application.view.fragment.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting"/>
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/showQrFragment"
         android:name="com.tta.qrscanner2023application.view.fragment.generate.ShowQrFragment"
@@ -97,4 +101,9 @@
             android:name="result"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.tta.qrscanner2023application.view.fragment.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language"/>
 </navigation>

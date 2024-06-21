@@ -120,7 +120,8 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
             if (isGranted) {
                 openGallery()
             } else {
-                Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -155,10 +156,12 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                     lastText = ""
                 } catch (e: NotFoundException) {
                     e.printStackTrace()
-                    Toast.makeText(requireContext(), "QR Code not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        getString(R.string.qr_code_not_found), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.no_image_selected), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -182,7 +185,7 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
             ) -> {
                 Toast.makeText(
                     requireContext(),
-                    "Permission is required to access gallery",
+                    getString(R.string.permission_is_required_to_access_gallery),
                     Toast.LENGTH_SHORT
                 ).show()
                 requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
