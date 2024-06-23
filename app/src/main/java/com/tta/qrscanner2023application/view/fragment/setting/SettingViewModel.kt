@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.DataStoreKeys
 import com.tta.qrscanner2023application.data.util.SettingsDataStore
 import com.tta.qrscanner2023application.data.util.qrData
@@ -14,12 +15,14 @@ import kotlinx.coroutines.withContext
 class SettingViewModel(private val context: Context) : ViewModel() {
     val soundData = MutableLiveData<Boolean>()
     val vibrationData = MutableLiveData<Boolean>()
+    val language = MutableLiveData<String>()
     val message = MutableLiveData<String>()
     fun getData() {
         viewModelScope.launch {
             context.qrData.data.collect {
                 soundData.value = it[DataStoreKeys.SOUND] ?: true
                 vibrationData.value = it[DataStoreKeys.VIBRATION] ?: true
+                language.value = it[DataStoreKeys.LANGUAGE] ?: "vi"
             }
         }
     }
@@ -32,10 +35,10 @@ class SettingViewModel(private val context: Context) : ViewModel() {
                 }
             }
                 .onSuccess {
-                    message.value = "Change Vibration Success"
+                    message.value = context.getString(R.string.change_vibration_success)
                 }
                 .onFailure {
-                    message.value = "Change Vibration Fail"
+                    message.value = context.getString(R.string.change_vibration_fail)
                 }
         }
     }
@@ -48,10 +51,26 @@ class SettingViewModel(private val context: Context) : ViewModel() {
                 }
             }
                 .onSuccess {
-                    message.value = "Change Sound Success"
+                    message.value = context.getString(R.string.change_sound_success)
                 }
                 .onFailure {
-                    message.value = "Change Sound Fail"
+                    message.value = context.getString(R.string.change_sound_fail)
+                }
+        }
+    }
+
+    fun changeLanguage(language : String) {
+        viewModelScope.launch {
+            runCatching {
+                withContext(Dispatchers.IO) {
+                    SettingsDataStore(context.qrData).saveLanguageToPreferencesStore(language, context)
+                }
+            }
+                .onSuccess {
+                    message.value = context.getString(R.string.change_language_success)
+                }
+                .onFailure {
+                    message.value = context.getString(R.string.change_language_fail)
                 }
         }
     }

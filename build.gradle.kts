@@ -7,6 +7,7 @@ buildscript {
         val nav_version = "2.5.3"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.44.2")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.9")
     }
 }
 plugins {

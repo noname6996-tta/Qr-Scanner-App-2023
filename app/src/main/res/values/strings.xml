@@ -44,4 +44,10 @@
     <string name="all_data_deleted">All data deleted</string>
     <string name="scan">Scan</string>
     <string name="created">Created</string>
+    <string name="change_vibration_success">Change Success</string>
+    <string name="change_vibration_fail">Change Fail</string>
+    <string name="change_sound_success">Change Success</string>
+    <string name="change_sound_fail">Change Fail</string>
+    <string name="change_language_success">Change Success</string>
+    <string name="change_language_fail">Change Fail</string>
 </resources>

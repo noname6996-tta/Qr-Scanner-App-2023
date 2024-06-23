@@ -14,7 +14,7 @@
     <string name="result">Kết quả</string>
     <string name="icon_qr">Icon QR</string>
     <string name="generate_qr_code">Tạo mã QR</string>
-    <string name="history">Lịch sử</string>
+    <string name="history">History</string>
     <string name="not_found_qr">Không thấy mã Qr</string>
     <string name="choose_pic">chọn ảnh</string>
     <string name="flash">Flash</string>
@@ -35,4 +35,20 @@
     <string name="string_vi">Tiếng Việt</string>
     <string name="string_en">Tiếng Anh</string>
     <string name="language_desc">Thay đổi ngôn ngữ</string>
+    <string name="generate">Generate</string>
+    <string name="delete">Xóa</string>
+    <string name="delete_desc">Xóa tất cả dữ liệu</string>
+    <string name="qr_code_not_found">Không tìm thất mã QR</string>
+    <string name="no_image_selected">Không có ảnh được chọn</string>
+    <string name="permission_is_required_to_access_gallery">Cho phép truy cập thư viện điện thoại</string>
+    <string name="permission_denied">Quyền sử dụng máy ảnh bị từ chối</string>
+    <string name="all_data_deleted">Tất cả dữ liệu đã được xóa</string>
+    <string name="scan">Quét được</string>
+    <string name="created">Tạo</string>
+    <string name="change_vibration_success">Thay đổi thành công</string>
+    <string name="change_vibration_fail">Thay đổi thành công</string>
+    <string name="change_sound_success">Thay đổi thành công</string>
+    <string name="change_sound_fail">Thay đổi thành công</string>
+    <string name="change_language_success">Thay đổi thành công</string>
+    <string name="change_language_fail">Thay đổi thành công</string>
 </resources>

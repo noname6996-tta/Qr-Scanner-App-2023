@@ -60,9 +60,11 @@
         <TextView
             android:id="@+id/descVibration"
             style="@style/TextView_White_14sp"
+            android:layout_width="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/vibration_done"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vibrationSwitch"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
 
@@ -112,9 +114,11 @@
         <TextView
             android:id="@+id/descSound"
             style="@style/TextView_White_14sp"
+            android:layout_width="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/sound_desc"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/soundSwitch"
             app:layout_constraintStart_toEndOf="@+id/imgSound"
             app:layout_constraintTop_toBottomOf="@+id/titleSound" />
 
@@ -137,6 +141,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/border_main_color_8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clSound">
@@ -164,9 +169,11 @@
         <TextView
             android:id="@+id/descLanguage"
             style="@style/TextView_White_14sp"
+            android:layout_width="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/language_desc"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgLanguage"
             app:layout_constraintTop_toBottomOf="@+id/titleLanguage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -214,9 +221,11 @@
         <TextView
             android:id="@+id/descPrivacy"
             style="@style/TextView_White_14sp"
+            android:layout_width="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/privacy_desc"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
             app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -254,9 +263,11 @@
         <TextView
             android:id="@+id/descDeleteAll"
             style="@style/TextView_White_14sp"
+            android:layout_width="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/delete_desc"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
             app:layout_constraintTop_toBottomOf="@+id/titleDeleteAll" />
     </androidx.constraintlayout.widget.ConstraintLayout>
