@@ -158,7 +158,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
                     // Permission is denied, handle this according to your app's logic
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setMessage("Please grant permission to save image for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
-                    builder.setPositiveButton("OK") { dialog, which ->
+                    builder.setPositiveButton("OK") { _, _ ->
                         // Execute Intent to Launch Application Details Settings
                         val intent = Intent(
                             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,

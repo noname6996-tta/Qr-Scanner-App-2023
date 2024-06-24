@@ -145,9 +145,9 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                 // Use ZXing to decode QR code
                 val reader = QRCodeReader()
                 try {
-                    val result = reader.decode(binaryBitmap)
+                    val code = reader.decode(binaryBitmap)
                     // Process the decoded result as needed
-                    lastText = result.text
+                    lastText = code.text
                     findNavController().navigate(
                         QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
                             lastText
