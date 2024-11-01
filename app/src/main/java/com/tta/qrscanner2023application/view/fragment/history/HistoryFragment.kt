@@ -2,7 +2,7 @@ package com.tta.qrscanner2023application.view.fragment.history
 
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.FragmentHistoryBinding
 

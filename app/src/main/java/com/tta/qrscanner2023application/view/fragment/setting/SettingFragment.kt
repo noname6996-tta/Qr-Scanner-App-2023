@@ -2,16 +2,20 @@ package com.tta.qrscanner2023application.view.fragment.setting
 
 import android.content.Intent
 import android.net.Uri
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.Constants
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
+    private val qrViewModel: QrScanViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true
     private lateinit var viewModel: SettingViewModel
     private lateinit var viewModelQr: QrScanViewModel
@@ -22,7 +26,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override fun initViewModel() {
         super.initViewModel()
         viewModel = SettingViewModel(requireContext())
-        viewModelQr = (requireActivity() as MainActivity).qrViewModel
+        viewModelQr = qrViewModel
         viewModel.getData()
     }
 

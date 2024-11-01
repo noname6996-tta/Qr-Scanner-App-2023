@@ -4,7 +4,7 @@ import android.text.InputType
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.QRCode
 import com.tta.qrscanner2023application.data.util.QRForm

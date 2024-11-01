@@ -12,9 +12,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
@@ -25,8 +26,11 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 import com.tta.qrscanner2023application.view.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
+    private val qrViewModel: QrScanViewModel by viewModels()
     private lateinit var viewModel: QrScanViewModel
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
@@ -38,7 +42,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
 
     override fun initViewModel() {
         super.initViewModel()
-        viewModel = (requireActivity() as MainActivity).qrViewModel
+        viewModel = qrViewModel
     }
 
     override fun initView() = with(binding) {

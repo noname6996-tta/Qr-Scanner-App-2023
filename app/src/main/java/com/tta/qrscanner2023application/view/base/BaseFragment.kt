@@ -1,4 +1,4 @@
-package com.tta.fitnessapplication.view.base
+package com.tta.qrscanner2023application.view.base
 
 import android.content.Context
 import android.os.Bundle

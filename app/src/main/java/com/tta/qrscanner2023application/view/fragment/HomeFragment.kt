@@ -11,7 +11,7 @@ import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.permissionx.guolindev.PermissionX
-import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {

@@ -1,7 +1,7 @@
 package com.tta.qrscanner2023application.view.fragment.generate
 
 import androidx.navigation.fragment.findNavController
-import com.tta.fitnessapplication.view.base.BaseFragment
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.QRCode
 import com.tta.qrscanner2023application.databinding.FragmentGenerateBinding

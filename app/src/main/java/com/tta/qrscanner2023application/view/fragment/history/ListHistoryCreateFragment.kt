@@ -1,16 +1,19 @@
 package com.tta.qrscanner2023application.view.fragment.history
 
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tta.fitnessapplication.view.base.BaseFragment
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
+import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
-import com.tta.qrscanner2023application.view.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
+    private val qrViewModel: QrScanViewModel by viewModels()
     private var historyAdapter = HistoryAdapter()
     private var list = ArrayList<QrCodeEntity>()
     override var isTerminalBackKeyActive: Boolean = false
@@ -44,7 +47,7 @@ class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
 
     override fun initViewModel() {
         super.initViewModel()
-        viewModel = (requireActivity() as MainActivity).qrViewModel
+        viewModel = qrViewModel
         viewModel.getListQrByType(TypeCode.CREATED)
     }
 
