@@ -14,6 +14,6 @@ enum class QRCode(val text: String, val type: String, val icon: Int) {
     ;
 
     companion object {
-        fun getByType(status: String?): QRCode = values().find { it.type == status } ?: TEXT
+        fun getByType(status: String?): QRCode = entries.find { it.type == status } ?: TEXT
     }
 }
