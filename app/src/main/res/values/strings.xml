@@ -11,10 +11,10 @@
     <string name="wifi">Wifi</string>
     <string name="back">Back</string>
     <string name="result">Result</string>
-    <string name="icon_qr">icon qr</string>
+    <string name="icon_qr">Icon QR</string>
     <string name="generate_qr_code">Generate QR Code</string>
     <string name="history">History</string>
-    <string name="not_found_qr">Không thấy mã Qr</string>
+    <string name="not_found_qr">Not found QR Code</string>
     <string name="choose_pic">choose Pic</string>
     <string name="flash">flash</string>
     <string name="setting">Setting</string>

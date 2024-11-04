@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QrTta Scan</string>
-    <string name="network">Net work</string>
-    <string name="password">Pass word</string>
+    <string name="network">Network</string>
+    <string name="password">Password</string>
     <string name="text">Text</string>
     <string name="phone">Phone</string>
     <string name="website">Website</string>
