@@ -14,6 +14,8 @@ import com.tta.qrscanner2023application.data.util.Constants
     version = 1,
     exportSchema = true
 )
+
+@TypeConverters(LocalDateConverter::class)
 abstract class QrCodeDatabase : RoomDatabase() {
     abstract fun qrCodeDao(): QrCodeDao
 
