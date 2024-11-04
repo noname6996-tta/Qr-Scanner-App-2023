@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.tta.qrscanner2023application.data.util.Constants
-import javax.annotation.Nonnull
+import java.time.LocalDateTime
 
 @Entity(tableName = Constants.TABLE_NAME)
 data class QrCodeEntity(
@@ -14,3 +14,4 @@ data class QrCodeEntity(
     @ColumnInfo(name = Constants.COLUMN_CREATED_TIME) val createdTime: String,
     @ColumnInfo(name = Constants.COLUMN_TYPE) val type: TypeCode
 )
+

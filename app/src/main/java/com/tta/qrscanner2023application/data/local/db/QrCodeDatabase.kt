@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.tta.qrscanner2023application.data.local.dao.QrCodeDao
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.util.Constants
