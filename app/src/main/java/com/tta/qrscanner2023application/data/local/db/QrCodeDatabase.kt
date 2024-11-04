@@ -17,6 +17,7 @@ abstract class QrCodeDatabase : RoomDatabase() {
     abstract fun qrCodeDao(): QrCodeDao
 
     companion object {
+        @Volatile
         private var instance: QrCodeDatabase? = null
 
         fun getDatabase(context: Context): QrCodeDatabase =
