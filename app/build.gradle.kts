@@ -81,10 +81,10 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     // Hilt
     implementation ("com.google.dagger:hilt-android:2.51.1")
-    ksp  ("com.google.dagger:hilt-android-compiler:2.48")
+    ksp  ("com.google.dagger:hilt-android-compiler:2.51.1")
     //
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
     // data Store
     implementation("androidx.datastore:datastore-preferences-core:1.1.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
