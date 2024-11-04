@@ -141,7 +141,6 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/border_main_color_8dp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clSound">
