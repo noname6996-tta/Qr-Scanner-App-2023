@@ -41,7 +41,7 @@ class HistoryAdapter :
         var someThingToEat = listHistory[position]
 
         holder.binding.code.text = someThingToEat.code
-        holder.binding.date.text = someThingToEat.createdTime
+        holder.binding.date.text = someThingToEat.createdTime.toString()
         holder.binding.imageView2.setOnClickListener {
             onClickDeleteData?.let {
                 it(position)

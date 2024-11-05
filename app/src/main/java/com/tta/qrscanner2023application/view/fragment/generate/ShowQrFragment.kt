@@ -27,6 +27,7 @@ import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -183,7 +184,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
     }
 
     private fun insertQrCodeScan(code: String) {
-        val scan = QrCodeEntity(0, code, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")).toString(), TypeCode.CREATED)
+        val scan = QrCodeEntity(0, code, LocalDate.now(), TypeCode.CREATED)
         viewModel.insertQrCode(scan)
     }
 }
