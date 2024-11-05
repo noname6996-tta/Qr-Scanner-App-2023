@@ -30,6 +30,7 @@ abstract class QrCodeDatabase : RoomDatabase() {
 
         private fun buildDatabase(appContext: Context) =
             Room.databaseBuilder(appContext, QrCodeDatabase::class.java, Constants.TABLE_NAME)
+                .addTypeConverter(LocalDateConverter())
                 .fallbackToDestructiveMigration()
                 .build()
     }
