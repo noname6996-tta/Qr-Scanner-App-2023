@@ -10,6 +10,7 @@ import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -26,6 +27,7 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -46,6 +48,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         viewModel = qrViewModel
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() = with(binding) {
         super.initView()
         result.text = args.text
@@ -180,8 +183,9 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun insertQrCodeScan(code: String) {
-        val scan = QrCodeEntity(0, code, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")).toString(), TypeCode.SCAN)
+        val scan = QrCodeEntity(0, code, LocalDate.now(), TypeCode.SCAN)
         viewModel.insertQrCode(scan)
     }
 }

@@ -1,8 +1,10 @@
 package com.tta.qrscanner2023application.view.fragment.history
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.databinding.ItemHistoryBinding
@@ -37,11 +39,12 @@ class HistoryAdapter :
         return ItemTodayMealViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ItemTodayMealViewHolder, position: Int) {
         var someThingToEat = listHistory[position]
 
         holder.binding.code.text = someThingToEat.code
-        holder.binding.date.text = someThingToEat.createdTime
+        holder.binding.date.text = someThingToEat.createdTime.toString()
         holder.binding.imageView2.setOnClickListener {
             onClickDeleteData?.let {
                 it(position)

@@ -10,6 +10,7 @@ import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -27,6 +28,7 @@ import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -47,6 +49,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         viewModel = qrViewModel
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() = with(binding) {
         super.initView()
         result.text = args.result
@@ -55,7 +58,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         imageBitmapResoure = generateQrCode(args.result)
         llAction.actionShare.root.visibility = View.GONE
         llAction.actionSave.root.visibility = View.GONE
-        binding.tvTime.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+        binding.tvTime.text = LocalDate.now().toString()
         setViewActionQr(args.result)
     }
 
@@ -182,8 +185,9 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun insertQrCodeScan(code: String) {
-        val scan = QrCodeEntity(0, code, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")).toString(), TypeCode.CREATED)
+        val scan = QrCodeEntity(0, code, LocalDate.now(), TypeCode.CREATED)
         viewModel.insertQrCode(scan)
     }
 }
