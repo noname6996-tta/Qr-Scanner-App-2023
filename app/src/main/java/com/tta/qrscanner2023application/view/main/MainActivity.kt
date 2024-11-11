@@ -125,4 +125,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         delegate.applyDayNight()
     }
+    override fun onBackPressed() {
+    }
 }
