@@ -2,6 +2,7 @@ package com.tta.qrscanner2023application.view.fragment.history
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
@@ -32,6 +33,13 @@ class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
+        viewModel.qrCodeEntity.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
+                    it.code
+                )
+            )
+        }
     }
 
     override fun initView() {
@@ -56,5 +64,9 @@ class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
         historyAdapter.deleteItem {
             viewModel.deleteQrCode(TypeCode.CREATED, list[it].id)
         }
+        historyAdapter.showInfo {
+            viewModel.getInfoById(list[it].id)
+        }
+
     }
 }

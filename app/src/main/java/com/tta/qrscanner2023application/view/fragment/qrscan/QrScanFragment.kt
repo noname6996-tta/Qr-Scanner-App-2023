@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
+
 import com.google.zxing.NotFoundException
 import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.ResultPoint
@@ -23,6 +25,7 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.data.util.playSound
 import com.tta.qrscanner2023application.data.util.vibratePhone
 import com.tta.qrscanner2023application.databinding.FragmentQrScanBinding
@@ -51,8 +54,8 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
             }
             lastText = result.text
             findNavController().navigate(
-                QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
-                    lastText
+                QrScanFragmentDirections.actionQrScanFragmentToShowQrFragment(
+                    lastText,TypeCode.SCAN.toString()
                 )
             )
             lastText = ""
@@ -148,11 +151,9 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                     val code = reader.decode(binaryBitmap)
                     // Process the decoded result as needed
                     lastText = code.text
-                    findNavController().navigate(
-                        QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
+                    findNavController().navigate(QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
                             lastText
-                        )
-                    )
+                        ))
                     lastText = ""
                 } catch (e: NotFoundException) {
                     e.printStackTrace()

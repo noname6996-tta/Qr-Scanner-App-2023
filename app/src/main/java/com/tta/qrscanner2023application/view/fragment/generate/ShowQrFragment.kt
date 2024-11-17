@@ -27,9 +27,10 @@ import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
@@ -48,15 +49,27 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         viewModel = qrViewModel
     }
 
+
     override fun initView() = with(binding) {
         super.initView()
+
         result.text = args.result
-        insertQrCodeScan(args.result)
+        insertQrCodeScan(args.result,args.type)
         imgQr.setImageBitmap(generateQrCode(args.result))
         imageBitmapResoure = generateQrCode(args.result)
         llAction.actionShare.root.visibility = View.GONE
         llAction.actionSave.root.visibility = View.GONE
-        binding.tvTime.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+
+        // Điều chỉnh cách hiển thị thời gian để phù hợp với API 23
+        val currentDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+        } else {
+            // Sử dụng Calendar và SimpleDateFormat cho API thấp hơn
+            val dateFormat = java.text.SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+            dateFormat.format(java.util.Date())
+        }
+        binding.tvTime.text = currentDateTime
+
         setViewActionQr(args.result)
     }
 
@@ -183,8 +196,10 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         }
     }
 
-    private fun insertQrCodeScan(code: String) {
-        val scan = QrCodeEntity(0, code, LocalDate.now(), TypeCode.CREATED)
+
+    private fun insertQrCodeScan(code: String, typeCode: String) {
+        // Sử dụng Date thay vì LocalDate để tương thích với API 23
+        val scan = QrCodeEntity(0, code, Date(), if(typeCode=="SCAN") TypeCode.SCAN else TypeCode.CREATED)
         viewModel.insertQrCode(scan)
     }
 }

@@ -20,6 +20,9 @@
             android:id="@+id/action_qrScanFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
         <action
+            android:id="@+id/action_qrScanFragment_to_showQrFragment"
+            app:destination="@id/showQrFragment" />
+        <action
             android:id="@+id/action_qrScanFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
         <action
@@ -52,6 +55,9 @@
         <action
             android:id="@+id/action_historyFragment_to_showQrFragment"
             app:destination="@id/showQrFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/generateCodeFragment"
@@ -99,6 +105,9 @@
         tools:layout="@layout/fragment_show_qr">
         <argument
             android:name="result"
+            app:argType="string" />
+        <argument
+            android:name="type"
             app:argType="string" />
     </fragment>
     <fragment

@@ -4,16 +4,18 @@ import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Date
 
 @ProvidedTypeConverter
 class LocalDateConverter {
     @TypeConverter
-    fun fromText(value: String) : LocalDate {
-        return LocalDate.parse(value, DateTimeFormatter.ISO_LOCAL_DATE)
+    fun fromDate(value: Date?): Long? {
+        return value?.time // Lấy giá trị timestamp (số mili giây)
     }
 
+    // Chuyển từ Long (timestamp) về Date
     @TypeConverter
-    fun toText(date: LocalDate) : String {
-        return date.format(DateTimeFormatter.ISO_LOCAL_DATE)
+    fun toDate(value: Long?): Date? {
+        return value?.let { Date(it) } // Chuyển lại thành Date từ timestamp
     }
 }

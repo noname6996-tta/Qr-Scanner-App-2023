@@ -56,6 +56,7 @@ class OnboardingActivity : OnboardAdvanced() {
     }
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

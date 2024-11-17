@@ -1,6 +1,7 @@
-package com.tta.fitnessapplication.view.base
+package com.tta.qrscanner2023application.view.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
@@ -34,15 +35,26 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
+
     override fun attachBaseContext(base: Context?) {
         base?.let {
             val currentLanguage = LanguageHelper.getLanguagePref(it)
-            if (it.resources.configuration.locales[0].language!= currentLanguage) {
+
+            // Kiểm tra phiên bản Android
+            val currentLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                it.resources.configuration.locales[0].language
+            } else {
+                it.resources.configuration.locale.language
+            }
+
+            if (currentLocale != currentLanguage) {
                 super.attachBaseContext(
                     LanguageHelper.setNewLocale(it, currentLanguage)
                 )
-            }else super.attachBaseContext(base)
+            } else {
+                super.attachBaseContext(base)
+            }
         }
-        if (base==null) super.attachBaseContext(base)
+        if (base == null) super.attachBaseContext(base)
     }
 }

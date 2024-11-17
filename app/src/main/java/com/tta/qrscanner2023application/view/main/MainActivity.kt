@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.tta.fitnessapplication.view.base.BaseActivity
+import com.tta.qrscanner2023application.view.base.BaseActivity
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +26,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         when (navController.currentDestination?.id) {
-            R.id.qrScanFragment, R.id.generateFragment, R.id.historyFragment, R.id.resultFragment, R.id.showQrFragment -> {
+            R.id.qrScanFragment, R.id.generateFragment, R.id.historyFragment, R.id.resultFragment -> {
                 binding.imgToHome.visibility = View.VISIBLE
                 binding.cardView.visibility = View.VISIBLE
             }

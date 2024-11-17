@@ -13,7 +13,7 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.tta.qrscanner2023application"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -70,8 +70,13 @@ dependencies {
     implementation("com.github.skydoves:balloon:1.5.4")
     // permission X
     implementation ("com.guolindev.permissionx:permissionx:1.7.1")
+
     // zxing
-    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0"){
+        isTransitive = false
+    }
+    implementation ("com.google.zxing:core:3.3.0")
+
     //
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")

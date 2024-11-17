@@ -35,7 +35,7 @@ class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
         }
         viewModel.qrCodeEntity.observe(viewLifecycleOwner) {
             findNavController().navigate(
-                HistoryFragmentDirections.actionHistoryFragmentToShowQrFragment(
+                HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
                     it.code
                 )
             )
