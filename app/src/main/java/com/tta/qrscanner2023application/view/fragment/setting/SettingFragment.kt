@@ -1,7 +1,11 @@
 package com.tta.qrscanner2023application.view.fragment.setting
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -30,13 +34,26 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         viewModel.getData()
     }
 
+
     override fun addObservers() {
         super.addObservers()
         viewModel.soundData.observe(viewLifecycleOwner) {
             binding.soundSwitch.isChecked = it
+            binding.soundSwitch.thumbTintList= if(it==false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 -> ContextCompat.getColor(it1, R.color.main_color_light) }
+                ?.let { it2 ->
+                    ColorStateList.valueOf(
+                        it2
+                    )
+                }
         }
         viewModel.vibrationData.observe(viewLifecycleOwner) {
             binding.vibrationSwitch.isChecked = it
+            binding.vibrationSwitch.thumbTintList= if(it==false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 -> ContextCompat.getColor(it1, R.color.main_color_light) }
+                ?.let { it2 ->
+                    ColorStateList.valueOf(
+                        it2
+                    )
+                }
         }
         viewModel.message.observe(viewLifecycleOwner) {
             Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
@@ -56,6 +73,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         clVibration.setOnClickListener {
             val isChecked = !binding.vibrationSwitch.isChecked
             viewModel.changeVibration(isChecked)
+
         }
         clPrivacy.setOnClickListener {
             val url = Constants.PRIVACY_WEB

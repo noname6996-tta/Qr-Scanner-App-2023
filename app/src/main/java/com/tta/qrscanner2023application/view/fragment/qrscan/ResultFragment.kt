@@ -26,7 +26,9 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
@@ -54,9 +56,11 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         imageBitmapResoure = generateQrCode(args.text)
         llAction.actionShare.root.visibility = View.GONE
         llAction.actionSave.root.visibility = View.GONE
+        val format = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
+        val formattedDate = format.format(Date(args.date))
+        binding.tvTime.text = formattedDate
         setViewActionQr(args.text)
     }
-
     override fun addEvent() = with(binding) {
         super.addEvent()
         imgBack.setOnClickListener { findNavController().popBackStack() }

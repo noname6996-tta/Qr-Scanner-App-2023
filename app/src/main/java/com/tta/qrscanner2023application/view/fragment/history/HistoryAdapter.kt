@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.databinding.ItemHistoryBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class HistoryAdapter :
     RecyclerView.Adapter<HistoryAdapter.ItemTodayMealViewHolder>() {
@@ -41,7 +43,10 @@ class HistoryAdapter :
         var someThingToEat = listHistory[position]
 
         holder.binding.code.text = someThingToEat.code
-        holder.binding.date.text = someThingToEat.createdTime.toString()
+        val format = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
+        val formattedDate = format.format(someThingToEat.createdTime)
+
+        holder.binding.date.text = formattedDate
         holder.binding.imageView2.setOnClickListener {
             onClickDeleteData?.let {
                 it(position)

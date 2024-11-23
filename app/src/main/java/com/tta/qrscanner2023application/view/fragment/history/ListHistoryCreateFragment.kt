@@ -36,7 +36,7 @@ class ListHistoryCreateFragment : BaseFragment<FragmentListHistoryBinding>() {
         viewModel.qrCodeEntity.observe(viewLifecycleOwner) {
             findNavController().navigate(
                 HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
-                    it.code
+                    it.code,it.createdTime.time
                 )
             )
         }

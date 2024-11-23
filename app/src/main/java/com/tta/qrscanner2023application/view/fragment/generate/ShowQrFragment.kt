@@ -62,10 +62,10 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
 
         // Điều chỉnh cách hiển thị thời gian để phù hợp với API 23
         val currentDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))
         } else {
             // Sử dụng Calendar và SimpleDateFormat cho API thấp hơn
-            val dateFormat = java.text.SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+            val dateFormat = java.text.SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
             dateFormat.format(java.util.Date())
         }
         binding.tvTime.text = currentDateTime

@@ -79,6 +79,9 @@
         <argument
             android:name="text"
             app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="long" />
         <action
             android:id="@+id/action_resultFragment_to_qrScanFragment"
             app:destination="@id/qrScanFragment" />

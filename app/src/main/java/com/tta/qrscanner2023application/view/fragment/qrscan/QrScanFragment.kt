@@ -151,8 +151,14 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                     val code = reader.decode(binaryBitmap)
                     // Process the decoded result as needed
                     lastText = code.text
-                    findNavController().navigate(QrScanFragmentDirections.actionQrScanFragmentToResultFragment(
-                            lastText
+                    if (isVibrationOn){
+                        requireActivity().vibratePhone()
+                    }
+                    if (isSoundOn){
+                        playSound(requireActivity())
+                    }
+                    findNavController().navigate(QrScanFragmentDirections.actionQrScanFragmentToShowQrFragment(
+                            lastText,TypeCode.SCAN.toString()
                         ))
                     lastText = ""
                 } catch (e: NotFoundException) {
