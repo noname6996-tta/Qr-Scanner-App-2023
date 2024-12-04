@@ -112,7 +112,19 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
 
     override var onSuccess: () -> Unit =
         {
-            val formats = listOf(BarcodeFormat.QR_CODE, BarcodeFormat.DATA_MATRIX, BarcodeFormat.PDF_417, BarcodeFormat.MAXICODE, BarcodeFormat.ITF)
+            val formats = listOf(
+                BarcodeFormat.QR_CODE, // QR Code
+                BarcodeFormat.CODE_39, // Code 39
+                BarcodeFormat.CODE_128, // Code 128
+                BarcodeFormat.EAN_13, // EAN-13
+                BarcodeFormat.EAN_8, // EAN-8
+                BarcodeFormat.UPC_A, // UPC-A
+                BarcodeFormat.UPC_E, // UPC-E
+                BarcodeFormat.ITF, // ITF
+                BarcodeFormat.PDF_417, // PDF-417
+                BarcodeFormat.DATA_MATRIX, // Data Matrix
+                BarcodeFormat.MAXICODE // MaxiCode
+            )
             binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
             binding.barcodeView.decodeContinuous(callback)
             canOpenExternalImage = true

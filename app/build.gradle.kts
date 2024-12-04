@@ -95,4 +95,6 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     //Onboarding
     implementation ("com.github.akshaaatt:Onboarding:1.1.3")
+    //
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
 }
