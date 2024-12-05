@@ -22,7 +22,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class QrScanViewModel @Inject constructor(
+class CoreViewModel @Inject constructor(
     private val repository: QrCodeRepository
 ) : ViewModel() {
     val listQrCodeScan = MutableLiveData<List<QrCodeEntity>>()

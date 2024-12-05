@@ -1,6 +1,5 @@
 package com.tta.qrscanner2023application.view.fragment.setting
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -13,16 +12,16 @@ import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.Constants
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
+import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
-    private val qrViewModel: QrScanViewModel by viewModels()
+    private val qrViewModel: CoreViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true
     private lateinit var viewModel: SettingViewModel
-    private lateinit var viewModelQr: QrScanViewModel
+    private lateinit var viewModelQr: CoreViewModel
     override fun getDataBinding(): FragmentSettingBinding {
         return FragmentSettingBinding.inflate(layoutInflater)
     }

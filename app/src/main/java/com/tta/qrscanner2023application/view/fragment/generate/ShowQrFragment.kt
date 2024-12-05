@@ -25,7 +25,7 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
+import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,8 +34,8 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
-    private val qrViewModel: QrScanViewModel by viewModels()
-    private lateinit var viewModel: QrScanViewModel
+    private val qrViewModel: CoreViewModel by viewModels()
+    private lateinit var viewModel: CoreViewModel
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ShowQrFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null

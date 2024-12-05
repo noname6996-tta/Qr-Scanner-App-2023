@@ -9,16 +9,16 @@ import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.QrScanViewModel
+import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
-    private val qrViewModel: QrScanViewModel by viewModels()
+    private val qrViewModel: CoreViewModel by viewModels()
     private var historyAdapter = HistoryAdapter()
     private var list = ArrayList<QrCodeEntity>()
     override var isTerminalBackKeyActive: Boolean = false
-    private lateinit var viewModel: QrScanViewModel
+    private lateinit var viewModel: CoreViewModel
     override fun getDataBinding(): FragmentListHistoryBinding {
         return FragmentListHistoryBinding.inflate(layoutInflater)
     }

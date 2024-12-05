@@ -17,8 +17,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
-import com.tta.qrscanner2023application.data.model.QrCodeEntity
-import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.data.util.copyToClipboard
 import com.tta.qrscanner2023application.data.util.generateQrCode
 import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
@@ -32,8 +30,8 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
-    private val qrViewModel: QrScanViewModel by viewModels()
-    private lateinit var viewModel: QrScanViewModel
+    private val qrViewModel: CoreViewModel by viewModels()
+    private lateinit var viewModel: CoreViewModel
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
