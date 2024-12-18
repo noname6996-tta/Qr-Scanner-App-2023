@@ -25,7 +25,7 @@ import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentShowQrBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
+import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

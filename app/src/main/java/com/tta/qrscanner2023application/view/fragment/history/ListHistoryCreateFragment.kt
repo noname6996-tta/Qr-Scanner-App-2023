@@ -9,7 +9,7 @@ import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
+import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

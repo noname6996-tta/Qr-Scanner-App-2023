@@ -23,6 +23,7 @@ import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
 import com.tta.qrscanner2023application.data.util.saveImage
 import com.tta.qrscanner2023application.data.util.shareImage
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
+import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -31,7 +32,6 @@ import java.util.Locale
 @AndroidEntryPoint
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
     private val qrViewModel: CoreViewModel by viewModels()
-    private lateinit var viewModel: CoreViewModel
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
@@ -39,12 +39,6 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
     override fun getDataBinding(): FragmentResultBinding {
         return FragmentResultBinding.inflate(layoutInflater)
     }
-
-    override fun initViewModel() {
-        super.initViewModel()
-        viewModel = qrViewModel
-    }
-
 
     override fun initView() = with(binding) {
         super.initView()
@@ -181,7 +175,4 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
             }
         }
     }
-
-
-
 }

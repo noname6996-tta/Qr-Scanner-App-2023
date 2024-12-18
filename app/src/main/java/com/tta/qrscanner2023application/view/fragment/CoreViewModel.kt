@@ -1,4 +1,4 @@
-package com.tta.qrscanner2023application.view.fragment.qrscan
+package com.tta.qrscanner2023application.view.fragment
 
 import android.app.Activity
 import android.content.Context

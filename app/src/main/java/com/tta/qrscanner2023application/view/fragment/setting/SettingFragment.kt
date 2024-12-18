@@ -12,7 +12,7 @@ import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.Constants
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
-import com.tta.qrscanner2023application.view.fragment.qrscan.CoreViewModel
+import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
