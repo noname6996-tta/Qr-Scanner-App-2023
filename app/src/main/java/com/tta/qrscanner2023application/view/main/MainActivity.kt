@@ -126,5 +126,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         delegate.applyDayNight()
     }
     override fun onBackPressed() {
+        super.onBackPressed()
     }
 }
