@@ -49,10 +49,8 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         viewModel = qrViewModel
     }
 
-
     override fun initView() = with(binding) {
         super.initView()
-
         result.text = args.result
         insertQrCodeScan(args.result,args.type)
         imgQr.setImageBitmap(generateQrCode(args.result))
@@ -69,7 +67,6 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
             dateFormat.format(java.util.Date())
         }
         binding.tvTime.text = currentDateTime
-
         setViewActionQr(args.result)
     }
 
