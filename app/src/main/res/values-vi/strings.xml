@@ -51,4 +51,5 @@
     <string name="change_sound_fail">Thay đổi thất bại</string>
     <string name="change_language_success">Thay đổi thành công</string>
     <string name="change_language_fail">Thay đổi thất bại</string>
+    <string name="generate_qr">Tạo mã QR code</string>
 </resources>

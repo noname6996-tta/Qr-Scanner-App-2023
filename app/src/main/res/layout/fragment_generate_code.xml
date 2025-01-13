@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnGenerate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBack">
@@ -97,17 +96,17 @@
             android:hint="@string/text"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:padding="8dp"
+            android:maxLines="1"
+            android:padding="12dp"
             android:singleLine="true"
             android:textColor="@color/white"
+            android:textColorHint="#BCBCBC"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <Button
         android:id="@+id/btnGenerate"
