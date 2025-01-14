@@ -1,7 +1,10 @@
 package com.tta.qrscanner2023application.view.main
 
+import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -9,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.tta.qrscanner2023application.view.base.BaseActivity
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
+import com.tta.qrscanner2023application.view.fragment.setting.language.LanguageHelper
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -113,19 +117,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.cardView.isVisible = visible
     }
 
-    fun changeLanguage(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-
-        val config = Configuration(resources.configuration)
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        // Áp dụng cài đặt thay đổi ngôn ngữ mà không cần recreate activity
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        delegate.applyDayNight()
-    }
-    override fun onBackPressed() {
-        super.onBackPressed()
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun attachBaseContext(base: Context?) {
+        base?.let {
+            val currentLanguage = LanguageHelper.getLanguagePref(it)
+            if (it.resources.configuration.locales[0].language != currentLanguage) {
+                super.attachBaseContext(
+                    LanguageHelper.setNewLocale(it, currentLanguage)
+                )
+            } else super.attachBaseContext(base)
+        }
+        if (base == null) super.attachBaseContext(base)
     }
 }

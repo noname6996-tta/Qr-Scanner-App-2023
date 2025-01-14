@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QrTta Scan</string>
+    <string name="app_name">QrScan TeamT</string>
     <string name="network">Mạng</string>
     <string name="password">Mật khẩu</string>
     <string name="text">Ký tự</string>
@@ -52,4 +52,11 @@
     <string name="change_language_success">Thay đổi thành công</string>
     <string name="change_language_fail">Thay đổi thất bại</string>
     <string name="generate_qr">Tạo mã QR code</string>
+    <string name="onboarding_tittle1">"Chào mừng đến với QrScan TeamT</string>
+    <string name="onboarding_desc1">Ứng dụng quét mã QR thông minh, tiện lợi, giúp bạn tiết kiệm thời gian và tối ưu công việc hàng ngày.</string>
+    <string name="onboarding_tittle2">Nâng tầm trải nghiệm</string>
+    <string name="onboarding_desc2">Tích hợp đa chức năng: quét mã, lưu lịch sử, và chia sẻ nhanh chóng. Đơn giản và hiệu quả chỉ trong vài giây.</string>
+    <string name="onboarding_tittle3">Nếu bạn thấy ứng dụng này tốt hãy đánh giá 5 sao</string>
+    <string name="onboarding_desc3">Hãy truy cập và tận hưởng các tính năng của chúng tôi miễn phí và giúp cuộc sống của bạn trở nên dễ dàng với chúng tôi.</string>
+    <string name="change_language_tittle">Thay đổi ngôn ngữ thành công</string>
 </resources>
