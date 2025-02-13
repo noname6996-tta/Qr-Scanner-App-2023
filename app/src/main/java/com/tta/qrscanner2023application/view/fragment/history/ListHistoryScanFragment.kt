@@ -2,15 +2,18 @@ package com.tta.qrscanner2023application.view.fragment.history
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
@@ -32,13 +35,6 @@ class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
-        viewModel.qrCodeEntity.observe(viewLifecycleOwner) {
-            findNavController().navigate(
-                HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
-                    it.code,it.createdTime.time
-                )
-            )
         }
     }
 
@@ -65,7 +61,14 @@ class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
             viewModel.deleteQrCode(TypeCode.SCAN, list[it].id)
         }
         historyAdapter.showInfo {
-            viewModel.getInfoById(list[it].id)
+            lifecycleScope.launch {
+                val qrInfo = viewModel.getInfoById(list[it].id)
+                findNavController().navigate(
+                    HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
+                        qrInfo?.code ?: getString(R.string.not_found_qr), qrInfo?.createdTime?.time ?: 0L
+                    )
+                )
+            }
         }
     }
 }
