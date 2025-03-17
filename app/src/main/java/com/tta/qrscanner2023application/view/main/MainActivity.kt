@@ -1,7 +1,10 @@
 package com.tta.qrscanner2023application.view.main
 
+import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -9,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.tta.qrscanner2023application.view.base.BaseActivity
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
+import com.tta.qrscanner2023application.view.fragment.setting.language.LanguageHelper
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -111,5 +115,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun setVisibleBottomBar(visible: Boolean) {
         binding.imgToHome.isVisible = visible
         binding.cardView.isVisible = visible
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun attachBaseContext(base: Context?) {
+        base?.let {
+            val currentLanguage = LanguageHelper.getLanguagePref(it)
+            if (it.resources.configuration.locales[0].language != currentLanguage) {
+                super.attachBaseContext(
+                    LanguageHelper.setNewLocale(it, currentLanguage)
+                )
+            } else super.attachBaseContext(base)
+        }
+        if (base == null) super.attachBaseContext(base)
     }
 }

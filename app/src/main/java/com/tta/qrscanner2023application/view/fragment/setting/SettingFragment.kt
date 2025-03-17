@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.qrscanner2023application.R
@@ -18,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
-    private val qrViewModel: CoreViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true
     private lateinit var viewModel: SettingViewModel
     private lateinit var viewModelQr: CoreViewModel
@@ -29,7 +27,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override fun initViewModel() {
         super.initViewModel()
         viewModel = SettingViewModel(requireContext())
-        viewModelQr = qrViewModel
         viewModel.getData()
     }
 
@@ -38,21 +35,33 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         super.addObservers()
         viewModel.soundData.observe(viewLifecycleOwner) {
             binding.soundSwitch.isChecked = it
-            binding.soundSwitch.thumbTintList= if(it==false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 -> ContextCompat.getColor(it1, R.color.main_color_light) }
-                ?.let { it2 ->
-                    ColorStateList.valueOf(
-                        it2
+            binding.soundSwitch.thumbTintList =
+                if (it == false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 ->
+                    ContextCompat.getColor(
+                        it1,
+                        R.color.main_color_light
                     )
                 }
+                    ?.let { it2 ->
+                        ColorStateList.valueOf(
+                            it2
+                        )
+                    }
         }
         viewModel.vibrationData.observe(viewLifecycleOwner) {
             binding.vibrationSwitch.isChecked = it
-            binding.vibrationSwitch.thumbTintList= if(it==false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 -> ContextCompat.getColor(it1, R.color.main_color_light) }
-                ?.let { it2 ->
-                    ColorStateList.valueOf(
-                        it2
+            binding.vibrationSwitch.thumbTintList =
+                if (it == false) ColorStateList.valueOf(Color.GRAY) else context?.let { it1 ->
+                    ContextCompat.getColor(
+                        it1,
+                        R.color.main_color_light
                     )
                 }
+                    ?.let { it2 ->
+                        ColorStateList.valueOf(
+                            it2
+                        )
+                    }
         }
         viewModel.message.observe(viewLifecycleOwner) {
             Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
@@ -85,7 +94,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         }
         clDeleteAll.setOnClickListener {
             viewModelQr.deleteAllQrCode()
-            Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT)
+                .show()
         }
     }
 }

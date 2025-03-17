@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QrTta Scan</string>
+    <string name="app_name">QrScan TeamT</string>
     <string name="network">Network</string>
     <string name="password">Password</string>
     <string name="text">Text</string>
@@ -51,4 +51,11 @@
     <string name="change_language_success">Change Success</string>
     <string name="change_language_fail">Change Fail</string>
     <string name="generate_qr">Generate QR</string>
+    <string name="onboarding_tittle1">Welcome to QrScan TeamT</string>
+    <string name="onboarding_desc1">A smart and convenient QR code scanner that saves your time and optimizes your daily tasks.</string>
+    <string name="onboarding_tittle2">Elevate Your Experience</string>
+    <string name="onboarding_desc2">Packed with features: scan codes, save history, and share instantly. Simple and efficient in just seconds.</string>
+    <string name="onboarding_tittle3">If you love this app, please rate us 5 stars</string>
+    <string name="onboarding_desc3">Go and enjoy our features for free and make your life easy with us.</string>
+    <string name="change_language_tittle">Language change successful</string>
 </resources>

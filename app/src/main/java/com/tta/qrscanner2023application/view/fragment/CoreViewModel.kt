@@ -67,19 +67,14 @@ class CoreViewModel @Inject constructor(
         }
     }
 
-    fun getInfoById(id: Int) {
-        viewModelScope.launch {
-            runCatching {
-                withContext(Dispatchers.IO) {
-                    repository.getInfoById(id)
-                }
+    suspend fun getInfoById(id: Int): QrCodeEntity? {
+        return runCatching {
+            withContext(Dispatchers.IO) {
+                repository.getInfoById(id)
             }
-                .onSuccess {
-                    qrCodeEntity.value = it
-                }
-                .onFailure {
-                    errorMessage.value = it.message.toString()
-                }
+        }.getOrElse {
+            errorMessage.value = it.message.toString()
+            null
         }
     }
 

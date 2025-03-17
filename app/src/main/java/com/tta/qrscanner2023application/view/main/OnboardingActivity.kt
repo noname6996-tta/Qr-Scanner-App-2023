@@ -18,8 +18,8 @@ class OnboardingActivity : OnboardAdvanced() {
         if (!onboardingCompleted) {
             addSlide(
                 OnboardFragment.newInstance(
-                    title = "QrScanner2023",
-                    description = "Go and enjoy our features for free and make your life easy with us.",
+                    title = getString(R.string.onboarding_tittle1),
+                    description = getString(R.string.onboarding_desc1),
                     resourceId = R.drawable.icon_onboarding,
                     backgroundDrawable = R.drawable.bg_onboarding2,
                     titleColor = Color.WHITE,
@@ -28,8 +28,8 @@ class OnboardingActivity : OnboardAdvanced() {
             )
             addSlide(
                 OnboardFragment.newInstance(
-                    title = "QrScanner2023",
-                    description = "Go and enjoy our features for free and make your life easy with us.",
+                    title = getString(R.string.onboarding_tittle2),
+                    description = getString(R.string.onboarding_desc2),
                     resourceId = R.drawable.ic_onboarding2,
                     backgroundDrawable = R.drawable.bg_onboarding,
                     titleColor = Color.WHITE,
@@ -38,8 +38,8 @@ class OnboardingActivity : OnboardAdvanced() {
             )
             addSlide(
                 OnboardFragment.newInstance(
-                    title = "QrScanner2023",
-                    description = "Go and enjoy our features for free and make your life easy with us.",
+                    title = getString(R.string.onboarding_tittle3),
+                    description = getString(R.string.onboarding_desc3),
                     resourceId = R.drawable.icon_dark_theme,
                     backgroundDrawable = R.drawable.bg_onboarding,
                     titleColor = Color.WHITE,
