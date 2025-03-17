@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -15,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
-
 import com.google.zxing.NotFoundException
 import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.ResultPoint
@@ -25,6 +23,7 @@ import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.helper.PermissionHelper
 import com.tta.qrscanner2023application.data.model.TypeCode
 import com.tta.qrscanner2023application.data.util.playSound
 import com.tta.qrscanner2023application.data.util.vibratePhone
@@ -38,15 +37,18 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
     private var lastText: String = ""
     private var canOpenExternalImage = false
     private var isFlashOn = false
-    private lateinit var settingViewModel : SettingViewModel
+    private lateinit var settingViewModel: SettingViewModel
     private var isVibrationOn = false
     private var isSoundOn = false
+    private val permissionHelper by lazy {
+        PermissionHelper(this) { startCamera() }
+    }
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
-            if (isVibrationOn){
+            if (isVibrationOn) {
                 requireActivity().vibratePhone()
             }
-            if (isSoundOn){
+            if (isSoundOn) {
                 playSound(requireActivity())
             }
             if (result?.text == null || result.text == lastText) {
@@ -55,7 +57,7 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
             lastText = result.text
             findNavController().navigate(
                 QrScanFragmentDirections.actionQrScanFragmentToShowQrFragment(
-                    lastText,TypeCode.SCAN.toString()
+                    lastText, TypeCode.SCAN.toString()
                 )
             )
             lastText = ""
@@ -87,14 +89,14 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
 
     override fun initView() {
         super.initView()
-        checkPermissions(requireContext())
+        permissionHelper.checkAndRequestPermissions()
         (requireActivity() as MainActivity).setVisibleBottomBar(true)
     }
 
     override fun addEvent() = with(binding) {
         super.addEvent()
         imgChoosePic.setOnClickListener {
-            if (canOpenExternalImage || android.os.Build.VERSION.SDK_INT >= 13) {
+            if (canOpenExternalImage) {
                 openGallery()
             } else {
                 checkPermission()
@@ -110,33 +112,34 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
         }
     }
 
-    override var onSuccess: () -> Unit =
-        {
-            val formats = listOf(
-                BarcodeFormat.QR_CODE, // QR Code
-                BarcodeFormat.CODE_39, // Code 39
-                BarcodeFormat.CODE_128, // Code 128
-                BarcodeFormat.EAN_13, // EAN-13
-                BarcodeFormat.EAN_8, // EAN-8
-                BarcodeFormat.UPC_A, // UPC-A
-                BarcodeFormat.UPC_E, // UPC-E
-                BarcodeFormat.ITF, // ITF
-                BarcodeFormat.PDF_417, // PDF-417
-                BarcodeFormat.DATA_MATRIX, // Data Matrix
-                BarcodeFormat.MAXICODE // MaxiCode
-            )
-            binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
-            binding.barcodeView.decodeContinuous(callback)
-            canOpenExternalImage = true
-        }
+    private fun startCamera() {
+        val formats = listOf(
+            BarcodeFormat.QR_CODE, // QR Code
+            BarcodeFormat.CODE_39, // Code 39
+            BarcodeFormat.CODE_128, // Code 128
+            BarcodeFormat.EAN_13, // EAN-13
+            BarcodeFormat.EAN_8, // EAN-8
+            BarcodeFormat.UPC_A, // UPC-A
+            BarcodeFormat.UPC_E, // UPC-E
+            BarcodeFormat.ITF, // ITF
+            BarcodeFormat.PDF_417, // PDF-417
+            BarcodeFormat.DATA_MATRIX, // Data Matrix
+            BarcodeFormat.MAXICODE // MaxiCode
+        )
+        binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
+        binding.barcodeView.decodeContinuous(callback)
+        canOpenExternalImage = true
+    }
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 openGallery()
             } else {
-                Toast.makeText(requireContext(),
-                    getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.permission_denied), Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -163,24 +166,30 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                     val code = reader.decode(binaryBitmap)
                     // Process the decoded result as needed
                     lastText = code.text
-                    if (isVibrationOn){
+                    if (isVibrationOn) {
                         requireActivity().vibratePhone()
                     }
-                    if (isSoundOn){
+                    if (isSoundOn) {
                         playSound(requireActivity())
                     }
-                    findNavController().navigate(QrScanFragmentDirections.actionQrScanFragmentToShowQrFragment(
-                            lastText,TypeCode.SCAN.toString()
-                        ))
+                    findNavController().navigate(
+                        QrScanFragmentDirections.actionQrScanFragmentToShowQrFragment(
+                            lastText, TypeCode.SCAN.toString()
+                        )
+                    )
                     lastText = ""
                 } catch (e: NotFoundException) {
                     e.printStackTrace()
-                    Toast.makeText(requireContext(),
-                        getString(R.string.qr_code_not_found), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.qr_code_not_found), Toast.LENGTH_SHORT
+                    ).show()
                 }
             } else {
-                Toast.makeText(requireContext(),
-                    getString(R.string.no_image_selected), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_image_selected), Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -216,8 +225,8 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
         }
     }
 
-    private fun checkFlashOn() = with(binding){
-        if (isFlashOn){
+    private fun checkFlashOn() = with(binding) {
+        if (isFlashOn) {
             barcodeView.setTorchOn()
             binding.imgFlash.setImageResource(R.drawable.ic_flash_on)
         } else {

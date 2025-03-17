@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseCameraFragment<T : ViewBinding> : Fragment()  {
+abstract class BaseCameraFragment<T : ViewBinding> : Fragment() {
     private var _binding: T? = null
     protected val binding: T
         get() = checkNotNull(_binding) {
@@ -75,53 +75,6 @@ abstract class BaseCameraFragment<T : ViewBinding> : Fragment()  {
         super.onDestroyView()
         _binding = null
     }
-    companion object {
-        var PERMISSIONS = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.VIBRATE
-        )
-    }
-
-    abstract var onSuccess: () -> Unit
-
-    internal fun checkPermissions(context: Context) {
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            permissionRequestLauncher.launch(
-                PERMISSIONS
-            )
-        } else {
-            onSuccess.invoke()
-        }
-    }
-
-    private val permissionRequestLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            val granted = permissions.entries.all {
-                it.value
-            }
-            if (granted) {
-                onSuccess.invoke()
-            } else if (permissions.entries.any { it.key == Manifest.permission.CAMERA }) {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setMessage("Please grant permission to use the camera for the application, because this is a QR code scanning application, you cannot use it without turning on the camera") // Replace with your message
-                builder.setPositiveButton("OK") { _, _ ->
-                    // Execute Intent to Launch Application Details Settings
-                    val intent = Intent(
-                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.parse("package:${requireContext().packageName}")
-                    )
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                }
-                val dialog = builder.create()
-                dialog.show()
-            }
-        }
 
     private fun hasFlash(): Boolean {
         return requireActivity().applicationContext.packageManager

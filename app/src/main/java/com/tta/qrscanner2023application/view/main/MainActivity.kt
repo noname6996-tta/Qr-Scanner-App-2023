@@ -112,20 +112,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.imgToHome.isVisible = visible
         binding.cardView.isVisible = visible
     }
-
-    fun changeLanguage(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-
-        val config = Configuration(resources.configuration)
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        // Áp dụng cài đặt thay đổi ngôn ngữ mà không cần recreate activity
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        delegate.applyDayNight()
-    }
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 }

@@ -42,8 +42,10 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
             // Kiểm tra phiên bản Android
             val currentLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                // For Android Nougat and above, use getLocales()
                 it.resources.configuration.locales[0].language
             } else {
+                // For older versions, use locale
                 it.resources.configuration.locale.language
             }
 
@@ -54,7 +56,6 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
             } else {
                 super.attachBaseContext(base)
             }
-        }
-        if (base == null) super.attachBaseContext(base)
+        } ?: super.attachBaseContext(base) // Handle null base case
     }
 }
