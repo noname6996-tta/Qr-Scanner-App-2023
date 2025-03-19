@@ -116,17 +116,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.imgToHome.isVisible = visible
         binding.cardView.isVisible = visible
     }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun attachBaseContext(base: Context?) {
-        base?.let {
-            val currentLanguage = LanguageHelper.getLanguagePref(it)
-            if (it.resources.configuration.locales[0].language != currentLanguage) {
-                super.attachBaseContext(
-                    LanguageHelper.setNewLocale(it, currentLanguage)
-                )
-            } else super.attachBaseContext(base)
-        }
-        if (base == null) super.attachBaseContext(base)
-    }
 }

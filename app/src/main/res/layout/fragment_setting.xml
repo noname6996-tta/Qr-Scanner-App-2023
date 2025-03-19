@@ -5,271 +5,284 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/back"
-        android:padding="10dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TextView_White_20sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/setting"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/imgBack"
-        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clVibration"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/back"
+                android:padding="10dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/vibration"
-            android:src="@drawable/baseline_vibration_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TextView_White_20sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/setting"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/imgBack"
+                app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
-        <TextView
-            android:id="@+id/titleVibration"
-            style="@style/TextView_White_16sp"
-            android:layout_marginStart="16dp"
-            android:text="@string/vibration"
-            app:layout_constraintBottom_toTopOf="@+id/descVibration"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clVibration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <TextView
-            android:id="@+id/descVibration"
-            style="@style/TextView_White_14sp"
-            android:layout_width="0dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/vibration_done"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/vibrationSwitch"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/vibration"
+                    android:src="@drawable/baseline_vibration_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/vibrationSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:enabled="false"
-            android:clickable="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbTint="@color/main_color_light"
-            app:trackTint="#686868" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/titleVibration"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/vibration"
+                    app:layout_constraintBottom_toTopOf="@+id/descVibration"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clSound"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clVibration">
+                <TextView
+                    android:id="@+id/descVibration"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/vibration_done"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/vibrationSwitch"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toBottomOf="@+id/titleVibration" />
 
-        <ImageView
-            android:id="@+id/imgSound"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/sound"
-            android:src="@drawable/baseline_volume_up_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/vibrationSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTint="@color/main_color_light"
+                    app:trackTint="#686868" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/titleSound"
-            style="@style/TextView_White_16sp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sound"
-            app:layout_constraintBottom_toTopOf="@+id/descSound"
-            app:layout_constraintStart_toEndOf="@+id/imgSound"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clVibration">
 
-        <TextView
-            android:id="@+id/descSound"
-            style="@style/TextView_White_14sp"
-            android:layout_width="0dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sound_desc"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/soundSwitch"
-            app:layout_constraintStart_toEndOf="@+id/imgSound"
-            app:layout_constraintTop_toBottomOf="@+id/titleSound" />
+                <ImageView
+                    android:id="@+id/imgSound"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/sound"
+                    android:src="@drawable/baseline_volume_up_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/soundSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:enabled="false"
-            android:clickable="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbTint="@color/main_color_light"
-            app:trackTint="#686868" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/titleSound"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/sound"
+                    app:layout_constraintBottom_toTopOf="@+id/descSound"
+                    app:layout_constraintStart_toEndOf="@+id/imgSound"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clLanguage"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clSound">
+                <TextView
+                    android:id="@+id/descSound"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/sound_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/soundSwitch"
+                    app:layout_constraintStart_toEndOf="@+id/imgSound"
+                    app:layout_constraintTop_toBottomOf="@+id/titleSound" />
 
-        <ImageView
-            android:id="@+id/imgLanguage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/sound"
-            android:src="@drawable/baseline_language_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/soundSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTint="@color/main_color_light"
+                    app:trackTint="#686868" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/titleLanguage"
-            style="@style/TextView_White_16sp"
-            android:layout_marginStart="16dp"
-            android:text="@string/language"
-            app:layout_constraintBottom_toTopOf="@+id/descLanguage"
-            app:layout_constraintStart_toEndOf="@+id/imgLanguage"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clSound">
 
-        <TextView
-            android:id="@+id/descLanguage"
-            style="@style/TextView_White_14sp"
-            android:layout_width="0dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/language_desc"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgLanguage"
-            app:layout_constraintTop_toBottomOf="@+id/titleLanguage" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imgLanguage"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/sound"
+                    android:src="@drawable/baseline_language_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/TextView_White_20sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/support"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/imgBack"
-        app:layout_constraintTop_toBottomOf="@+id/clLanguage" />
+                <TextView
+                    android:id="@+id/titleLanguage"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/language"
+                    app:layout_constraintBottom_toTopOf="@+id/descLanguage"
+                    app:layout_constraintStart_toEndOf="@+id/imgLanguage"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clPrivacy"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+                <TextView
+                    android:id="@+id/descLanguage"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/language_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgLanguage"
+                    app:layout_constraintTop_toBottomOf="@+id/titleLanguage" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/imgPrivacy"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/support"
-            android:src="@drawable/baseline_privacy_tip_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/TextView_White_20sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/support"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/imgBack"
+                app:layout_constraintTop_toBottomOf="@+id/clLanguage" />
 
-        <TextView
-            android:id="@+id/titlePrivacy"
-            style="@style/TextView_White_16sp"
-            android:layout_marginStart="16dp"
-            android:text="@string/privacy_policy"
-            app:layout_constraintBottom_toTopOf="@+id/descPrivacy"
-            app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clPrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <TextView
-            android:id="@+id/descPrivacy"
-            style="@style/TextView_White_14sp"
-            android:layout_width="0dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/privacy_desc"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
-            app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imgPrivacy"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/support"
+                    android:src="@drawable/baseline_privacy_tip_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clDeleteAll"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/border_main_color_8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clPrivacy">
+                <TextView
+                    android:id="@+id/titlePrivacy"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/privacy_policy"
+                    app:layout_constraintBottom_toTopOf="@+id/descPrivacy"
+                    app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imgDeleteAll"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/support"
-            android:src="@drawable/baseline_delete_forever_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/descPrivacy"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/privacy_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
+                    app:layout_constraintTop_toBottomOf="@+id/titlePrivacy" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/titleDeleteAll"
-            style="@style/TextView_White_16sp"
-            android:layout_marginStart="16dp"
-            android:text="@string/delete"
-            app:layout_constraintBottom_toTopOf="@+id/descDeleteAll"
-            app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDeleteAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clPrivacy">
 
-        <TextView
-            android:id="@+id/descDeleteAll"
-            style="@style/TextView_White_14sp"
-            android:layout_width="0dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/delete_desc"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
-            app:layout_constraintTop_toBottomOf="@+id/titleDeleteAll" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imgDeleteAll"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/support"
+                    android:src="@drawable/baseline_delete_forever_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/titleDeleteAll"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/delete"
+                    app:layout_constraintBottom_toTopOf="@+id/descDeleteAll"
+                    app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/descDeleteAll"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/delete_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
+                    app:layout_constraintTop_toBottomOf="@+id/titleDeleteAll" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
