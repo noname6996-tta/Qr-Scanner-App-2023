@@ -5,26 +5,24 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="30dp"
-        android:contentDescription="@string/back"
-        android:padding="10dp"
-        android:src="@drawable/ic_back"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TextView_White_20sp"
-        android:layout_marginStart="20sp"
-        android:text="@string/result"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/main_color_dark"
+            android:theme="@style/ToolBarStyle"
+            app:navigationIcon="?android:attr/homeAsUpIndicator"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/generate_qr" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -34,7 +32,7 @@
         android:background="@drawable/border_main_color_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBack">
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -58,7 +56,7 @@
         <EditText
             android:id="@+id/edtText1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
@@ -86,7 +84,7 @@
         <EditText
             android:id="@+id/edtText2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"

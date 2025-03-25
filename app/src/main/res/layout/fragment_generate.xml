@@ -5,23 +5,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/main_color_dark"
+            android:theme="@style/ToolBarStyle"
+            app:navigationIcon="?android:attr/homeAsUpIndicator"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/generate_qr" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="140dp">
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/TextView_White_20sp"
-                android:layout_margin="24dp"
-                android:text="@string/generate_qr"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/itemText"
@@ -31,7 +44,8 @@
                 android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/itemPhone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <include
                 android:id="@+id/itemPhone"

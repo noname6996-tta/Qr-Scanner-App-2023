@@ -1,5 +1,6 @@
 package com.tta.qrscanner2023application.view.fragment.history
 
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.tta.qrscanner2023application.view.base.BaseFragment
@@ -16,6 +17,11 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     override fun initView() {
         super.initView()
         initUiPager()
+    }
+
+    override fun addEvent() {
+        super.addEvent()
+        binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack(R.id.qrScanFragment, false) }
     }
 
     private fun initUiPager()  = with(binding){

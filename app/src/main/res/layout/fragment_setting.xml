@@ -5,33 +5,34 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/main_color_dark"
+            android:theme="@style/ToolBarStyle"
+            app:navigationIcon="?android:attr/homeAsUpIndicator"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/setting" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/imgBack"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription="@string/back"
-                android:padding="10dp"
-                android:src="@drawable/ic_back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/TextView_White_20sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/setting"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/imgBack"
-                app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clVibration"
@@ -42,7 +43,7 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -188,16 +189,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/titleLanguage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/TextView_White_20sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/support"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/imgBack"
-                app:layout_constraintTop_toBottomOf="@+id/clLanguage" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clPrivacy"
                 android:layout_width="match_parent"
@@ -207,7 +198,7 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2">
+                app:layout_constraintTop_toBottomOf="@+id/clLanguage">
 
                 <ImageView
                     android:id="@+id/imgPrivacy"

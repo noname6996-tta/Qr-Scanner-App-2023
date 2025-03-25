@@ -3,7 +3,10 @@
     <style name="Base.Theme.QrScanner2023Application" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-
+        <!-- Màu Status Bar (API 21+) -->
+        <item name="android:statusBarColor">#717171</item>
+        <!-- Màu chữ/icons trắng hoặc đen (API 23+) -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="BackgroundColor">

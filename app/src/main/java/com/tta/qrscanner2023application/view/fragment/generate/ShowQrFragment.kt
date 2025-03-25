@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -52,7 +53,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
     override fun initView() = with(binding) {
         super.initView()
         result.text = args.result
-        insertQrCodeScan(args.result,args.type)
+        insertQrCodeScan(args.result, args.type)
         imgQr.setImageBitmap(generateQrCode(args.result))
         imageBitmapResoure = generateQrCode(args.result)
         llAction.actionShare.root.visibility = View.GONE
@@ -72,14 +73,14 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
 
     override fun addEvent() = with(binding) {
         super.addEvent()
-        imgBack.setOnClickListener { findNavController().popBackStack() }
+        toolbar.setOnClickListener { findNavController().popBackStack() }
         viewShowQr.setOnClickListener {
             checkImgVis()
         }
     }
 
     private fun checkImgVis() = with(binding) {
-        if (imgQr.visibility == View.VISIBLE) {
+        if (imgQr.isVisible) {
             imgQr.visibility = View.GONE
             tvShowQr.text = "Show Qr code"
             llAction.actionShare.root.visibility = View.GONE
@@ -196,7 +197,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
 
     private fun insertQrCodeScan(code: String, typeCode: String) {
         // Sử dụng Date thay vì LocalDate để tương thích với API 23
-        val scan = QrCodeEntity(0, code, Date(), if(typeCode=="SCAN") TypeCode.SCAN else TypeCode.CREATED)
+        val scan = QrCodeEntity(0, code, Date(), if (typeCode == "SCAN") TypeCode.SCAN else TypeCode.CREATED)
         viewModel.insertQrCode(scan)
     }
 }

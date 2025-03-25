@@ -3,8 +3,8 @@ package com.tta.qrscanner2023application.view.fragment.setting
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.net.Uri
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.qrscanner2023application.R
@@ -70,7 +70,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     override fun addEvent() = with(binding) {
         super.addEvent()
-        imgBack.setOnClickListener {
+        toolbar.setNavigationOnClickListener {
             (requireActivity() as MainActivity).setVisibleBottomBar(false)
             findNavController().popBackStack()
         }
@@ -86,7 +86,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         clPrivacy.setOnClickListener {
             val url = Constants.PRIVACY_WEB
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
+            intent.data = url.toUri()
             startActivity(intent)
         }
         clLanguage.setOnClickListener {

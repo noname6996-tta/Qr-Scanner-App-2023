@@ -83,5 +83,7 @@ class GenerateFragment : BaseFragment<FragmentGenerateBinding>() {
                 )
             )
         }
+
+        toolbar.setNavigationOnClickListener { findNavController().popBackStack(R.id.qrScanFragment, false) }
     }
 }

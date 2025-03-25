@@ -55,7 +55,7 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
     }
     override fun addEvent() = with(binding) {
         super.addEvent()
-        imgBack.setOnClickListener { findNavController().popBackStack() }
+        toolbar.setOnClickListener { findNavController().popBackStack() }
         viewShowQr.setOnClickListener {
             checkImgVis()
         }
