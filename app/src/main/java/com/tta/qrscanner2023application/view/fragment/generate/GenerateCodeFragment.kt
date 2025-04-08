@@ -1,10 +1,12 @@
 package com.tta.qrscanner2023application.view.fragment.generate
 
 import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.blankj.utilcode.util.KeyboardUtils
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.TypeCode
@@ -45,7 +47,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
 
     override fun addEvent() = with(binding) {
         super.addEvent()
-        imgBack.setOnClickListener {
+        toolbar.setNavigationOnClickListener {
             (requireActivity() as MainActivity).setVisibleBottomBar(true)
             findNavController().popBackStack()
         }
@@ -100,5 +102,21 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
                 )
             }
         }
+
+        KeyboardUtils.showSoftInput(edtText2)
+
+        edtText2.setOnEditorActionListener { view, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                KeyboardUtils.hideSoftInput(view)
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        KeyboardUtils.hideSoftInput(requireActivity())
     }
 }

@@ -65,7 +65,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         } else {
             // Sử dụng Calendar và SimpleDateFormat cho API thấp hơn
             val dateFormat = java.text.SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
-            dateFormat.format(java.util.Date())
+            dateFormat.format(Date())
         }
         binding.tvTime.text = currentDateTime
         setViewActionQr(args.result)

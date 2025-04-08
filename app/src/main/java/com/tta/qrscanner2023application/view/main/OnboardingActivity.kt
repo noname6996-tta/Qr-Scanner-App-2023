@@ -12,7 +12,7 @@ import com.tta.qrscanner2023application.R
 class OnboardingActivity : OnboardAdvanced() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPreferences = getSharedPreferences("OnboardingPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("OnboardingPrefs", MODE_PRIVATE)
         val onboardingCompleted = sharedPreferences.getBoolean("onboarding_completed", false)
 
         if (!onboardingCompleted) {
