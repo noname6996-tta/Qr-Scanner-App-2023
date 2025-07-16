@@ -97,5 +97,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT)
                 .show()
         }
+        clMoreApps.setOnClickListener {
+            viewModel.openMoreApps(requireContext())
+        }
     }
 }

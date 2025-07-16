@@ -59,4 +59,6 @@
     <string name="onboarding_tittle3">Nếu bạn thấy ứng dụng này tốt hãy đánh giá 5 sao</string>
     <string name="onboarding_desc3">Hãy truy cập và tận hưởng các tính năng của chúng tôi miễn phí và giúp cuộc sống của bạn trở nên dễ dàng với chúng tôi.</string>
     <string name="change_language_tittle">Thay đổi ngôn ngữ thành công</string>
+    <string name="lbl_more_apps">Xem thêm ứng dụng khác</string>
+    <string name="title_more_apps">Nhiều ứng dụng hơn từ chúng tôi</string>
 </resources>

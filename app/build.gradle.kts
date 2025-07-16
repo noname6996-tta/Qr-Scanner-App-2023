@@ -10,11 +10,11 @@ plugins {
 
 android {
     namespace = "com.tta.qrscanner2023application"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.tta.qrscanner2023application"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 3
         versionName = "1.0.2"
 
@@ -46,23 +46,23 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-    implementation("com.google.firebase:firebase-crashlytics:19.2.1")
-    implementation("androidx.activity:activity-ktx:1.9.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation("com.google.firebase:firebase-crashlytics:19.4.4")
+    implementation("androidx.activity:activity-ktx:1.10.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics-ktx")
     // Kotlin
     val nav_version = "2.8.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.1")
     //MLKit
     implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
     implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
@@ -80,21 +80,20 @@ dependencies {
     implementation ("com.google.zxing:core:3.4.1")
 
     //
-    val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-runtime:2.7.2")
+    annotationProcessor("androidx.room:room-compiler:2.7.2")
+    implementation("androidx.room:room-ktx:2.7.2")
     // To use Kotlin annotation processing tool (kapt)
-    ksp("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:2.7.2")
     // Hilt
-    implementation ("com.google.dagger:hilt-android:2.51.1")
-    ksp  ("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation ("com.google.dagger:hilt-android:2.56.2")
+    ksp  ("com.google.dagger:hilt-android-compiler:2.56.2")
     //
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
     // data Store
-    implementation("androidx.datastore:datastore-preferences-core:1.1.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore-preferences-core:1.1.7")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
     //Onboarding
     implementation ("com.github.akshaaatt:Onboarding:1.1.3")
     //

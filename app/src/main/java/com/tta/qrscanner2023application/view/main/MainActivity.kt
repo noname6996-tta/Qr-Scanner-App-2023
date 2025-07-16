@@ -6,6 +6,8 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -26,6 +28,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initView() {
         super.initView()
+        // ✅ Set màu cho status bar (phần hiển thị Wi-Fi, pin, giờ...)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.main_color_dark)
+
+        // ✅ (Tuỳ chọn) Set icon status bar là đen (nếu nền sáng)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController

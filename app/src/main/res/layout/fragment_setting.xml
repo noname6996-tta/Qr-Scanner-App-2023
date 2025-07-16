@@ -274,6 +274,49 @@
                     app:layout_constraintStart_toEndOf="@+id/imgDeleteAll"
                     app:layout_constraintTop_toBottomOf="@+id/titleDeleteAll" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clMoreApps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/border_main_color_8dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clPrivacy">
+
+                <ImageView
+                    android:id="@+id/imgMoreApps"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/support"
+                    android:src="@drawable/baseline_language_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/titleMoreApps"
+                    style="@style/TextView_White_16sp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/lbl_more_apps"
+                    app:layout_constraintBottom_toTopOf="@+id/descMoreApps"
+                    app:layout_constraintStart_toEndOf="@+id/imgMoreApps"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/descMoreApps"
+                    style="@style/TextView_White_14sp"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/title_more_apps"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgMoreApps"
+                    app:layout_constraintTop_toBottomOf="@+id/titleMoreApps" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

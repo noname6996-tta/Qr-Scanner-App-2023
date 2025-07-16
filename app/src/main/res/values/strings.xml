@@ -58,4 +58,6 @@
     <string name="onboarding_tittle3">If you love this app, please rate us 5 stars</string>
     <string name="onboarding_desc3">Go and enjoy our features for free and make your life easy with us.</string>
     <string name="change_language_tittle">Language change successful</string>
+    <string name="lbl_more_apps">More apps</string>
+    <string name="title_more_apps">More apps from us</string>
 </resources>

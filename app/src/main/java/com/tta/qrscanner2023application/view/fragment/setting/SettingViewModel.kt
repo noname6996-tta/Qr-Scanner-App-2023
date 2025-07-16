@@ -1,6 +1,9 @@
 package com.tta.qrscanner2023application.view.fragment.setting
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -72,6 +75,24 @@ class SettingViewModel(private val context: Context) : ViewModel() {
                 .onFailure {
                     message.value = context.getString(R.string.change_language_fail)
                 }
+        }
+    }
+
+    fun openMoreApps(context: Context, developerId: String = "NextGenLab") {
+        val developerUrl = "https://play.google.com/store/apps/developer?id=$developerId"
+        val playIntent = Intent(Intent.ACTION_VIEW, developerUrl.toUri()).apply {
+            setPackage("com.android.vending") // Ưu tiên mở bằng Google Play
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        try {
+            context.startActivity(playIntent)
+        } catch (e: ActivityNotFoundException) {
+            // Nếu không có Google Play, mở bằng trình duyệt
+            val webIntent = Intent(Intent.ACTION_VIEW, developerUrl.toUri()).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(webIntent)
         }
     }
 }
