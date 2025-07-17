@@ -23,8 +23,8 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("D:\\keystore\\pictorush.jks")
-            keyAlias = "pictorush"
+            storeFile = file("qr_scan_app.jks")
+            keyAlias = "key0"
             keyPassword = "theanh682001"
             storePassword = "theanh682001"
         }
