@@ -20,15 +20,36 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("D:\\keystore\\pictorush.jks")
+            keyAlias = "pictorush"
+            keyPassword = "theanh682001"
+            storePassword = "theanh682001"
+        }
+    }
+
     buildTypes {
         release {
+            isDebuggable = false
+            isShrinkResources = true
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            isDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            isDebuggable = true
+            isShrinkResources = false
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
