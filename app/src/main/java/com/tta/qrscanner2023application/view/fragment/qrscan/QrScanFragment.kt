@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -96,11 +97,7 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
     override fun addEvent() = with(binding) {
         super.addEvent()
         imgChoosePic.setOnClickListener {
-            if (canOpenExternalImage) {
-                openGallery()
-            } else {
-                checkPermission()
-            }
+            openGallery()
         }
         imgFlash.setOnClickListener {
             isFlashOn = !isFlashOn
@@ -131,27 +128,52 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
         canOpenExternalImage = true
     }
 
+    // Launcher cho việc request permission
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
-                openGallery()
+                launchGallery()
             } else {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.permission_denied), Toast.LENGTH_SHORT
+                    getString(R.string.permission_denied),
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }
 
+    // Launcher cho việc pick image
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 val imageUri: Uri? = data?.data
-                val bitmap = BitmapFactory.decodeStream(
-                    requireActivity().contentResolver.openInputStream(imageUri!!)
-                )
 
+                if (imageUri != null) {
+                    processImageFromUri(imageUri)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.no_image_selected),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_image_selected),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    private fun processImageFromUri(imageUri: Uri) {
+        try {
+            val bitmap = BitmapFactory.decodeStream(
+                requireActivity().contentResolver.openInputStream(imageUri)
+            )
+
+            if (bitmap != null) {
                 // Convert bitmap to binary bitmap
                 val width = bitmap.width
                 val height = bitmap.height
@@ -182,45 +204,81 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
                     e.printStackTrace()
                     Toast.makeText(
                         requireContext(),
-                        getString(R.string.qr_code_not_found), Toast.LENGTH_SHORT
+                        getString(R.string.qr_code_not_found),
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
             } else {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.no_image_selected), Toast.LENGTH_SHORT
+                    "Không thể đọc ảnh",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(
+                requireContext(),
+                "Lỗi khi xử lý ảnh",
+                Toast.LENGTH_SHORT
+            ).show()
         }
+    }
 
     private fun openGallery() {
+        // Kiểm tra permission trước khi mở gallery
+        if (hasStoragePermission()) {
+            launchGallery()
+        } else {
+            requestStoragePermission()
+        }
+    }
+
+    private fun launchGallery() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         pickImageLauncher.launch(galleryIntent)
     }
 
-    private fun checkPermission() {
-        when {
+    private fun hasStoragePermission(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+ không cần READ_EXTERNAL_STORAGE để pick ảnh
+            true
+        } else {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                openGallery()
-            }
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
 
-            ActivityCompat.shouldShowRequestPermissionRationale(
-                requireActivity(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) -> {
-                Toast.makeText(
+    private fun requestStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+ không cần permission để pick ảnh
+            launchGallery()
+        } else {
+            when {
+                ContextCompat.checkSelfPermission(
                     requireContext(),
-                    getString(R.string.permission_is_required_to_access_gallery),
-                    Toast.LENGTH_SHORT
-                ).show()
-                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    launchGallery()
+                }
 
-            else -> {
-                requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) -> {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.permission_is_required_to_access_gallery),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
             }
         }
     }

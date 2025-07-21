@@ -13,7 +13,7 @@ android {
     compileSdk = 35
     defaultConfig {
         applicationId = "com.tta.qrscanner2023application"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 35
         versionCode = 3
         versionName = "1.0.2"
@@ -81,9 +81,8 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics-ktx")
     // Kotlin
-    val nav_version = "2.8.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.2")
     //MLKit
     implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
     implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
