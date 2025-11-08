@@ -1,22 +1,16 @@
 package com.tta.qrscanner2023application.view.main
 
-import android.content.Context
-import android.content.res.Configuration
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.tta.qrscanner2023application.view.base.BaseActivity
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
-import com.tta.qrscanner2023application.view.fragment.setting.language.LanguageHelper
+import com.tta.qrscanner2023application.view.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -28,6 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initView() {
         super.initView()
+        enableEdgeToEdge()
         // ✅ Set màu cho status bar (phần hiển thị Wi-Fi, pin, giờ...)
         window.statusBarColor = ContextCompat.getColor(this, R.color.main_color_dark)
 

@@ -1,17 +1,19 @@
 package com.tta.qrscanner2023application.view.main
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.Fragment
 import com.limurse.onboard.OnboardAdvanced
 import com.limurse.onboard.OnboardFragment
 import com.tta.qrscanner2023application.R
+import androidx.core.content.edit
 
 class OnboardingActivity : OnboardAdvanced() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         val sharedPreferences = getSharedPreferences("OnboardingPrefs", MODE_PRIVATE)
         val onboardingCompleted = sharedPreferences.getBoolean("onboarding_completed", false)
 
@@ -46,9 +48,9 @@ class OnboardingActivity : OnboardAdvanced() {
                     descriptionColor = Color.WHITE,
                 )
             )
-            val editor = sharedPreferences.edit()
-            editor.putBoolean("onboarding_completed", true)
-            editor.apply()
+            sharedPreferences.edit {
+                putBoolean("onboarding_completed", true)
+            }
         } else {
             startActivity(Intent(this@OnboardingActivity,MainActivity::class.java))
             finish()
