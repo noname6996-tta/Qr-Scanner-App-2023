@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:contentDescription="@string/icon_qr"
             android:scaleType="centerCrop"
             android:src="@drawable/baseline_language_24"

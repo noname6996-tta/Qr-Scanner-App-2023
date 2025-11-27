@@ -15,8 +15,8 @@ android {
         applicationId = "com.tta.qrscanner2023application"
         minSdk = 24
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.0.3"
+        versionCode = 7
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,7 +66,6 @@ android {
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.16.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.12.0")
@@ -83,11 +82,11 @@ dependencies {
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:2.9.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.9.2")
-    //MLKit
-    implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
-    implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
-    //
-    implementation  ("com.google.android.gms:play-services-vision:20.1.3")
+//    //MLKit
+//    implementation ("com.google.firebase:firebase-ml-vision:24.1.0")
+//    implementation ("com.google.firebase:firebase-ml-vision-barcode-model:16.1.2")
+//    //
+//    implementation  ("com.google.android.gms:play-services-vision:20.1.3")
     // baloon
     implementation("com.github.skydoves:balloon:1.5.4")
     // permission X
@@ -97,7 +96,7 @@ dependencies {
     implementation("com.journeyapps:zxing-android-embedded:4.3.0"){
         isTransitive = false
     }
-    implementation ("com.google.zxing:core:3.4.1")
+    implementation ("com.google.zxing:core:3.5.4")
 
     //
     implementation("androidx.room:room-runtime:2.7.2")
