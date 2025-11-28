@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.qrscanner2023application.R
@@ -14,12 +15,13 @@ import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import com.tta.qrscanner2023application.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override var isTerminalBackKeyActive: Boolean = true
     private lateinit var viewModel: SettingViewModel
-    private lateinit var viewModelQr: CoreViewModel
+    private val viewModelQr : CoreViewModel by viewModels()
     override fun getDataBinding(): FragmentSettingBinding {
         return FragmentSettingBinding.inflate(layoutInflater)
     }
