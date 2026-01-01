@@ -58,6 +58,7 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
         imageBitmapResoure = generateQrCode(args.result)
         llAction.actionShare.root.visibility = View.GONE
         llAction.actionSave.root.visibility = View.GONE
+        llAction.actionSearch.root.visibility = View.GONE
 
         // Điều chỉnh cách hiển thị thời gian để phù hợp với API 23
         val currentDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -85,11 +86,15 @@ class ShowQrFragment : BaseFragment<FragmentShowQrBinding>() {
             tvShowQr.text = "Show Qr code"
             llAction.actionShare.root.visibility = View.GONE
             llAction.actionSave.root.visibility = View.GONE
+            llAction.actionSearch.root.visibility = View.GONE
         } else {
             imgQr.visibility = View.VISIBLE
             tvShowQr.text = "Hide Qr code"
             llAction.actionShare.root.visibility = View.VISIBLE
             llAction.actionSave.root.visibility = View.VISIBLE
+            if (args.format == "EAN_13" || args.format == "EAN_8" || args.format == "UPC_A" || args.format == "UPC_E") {
+                llAction.actionSearch.root.visibility = View.VISIBLE
+            }
         }
     }
 

@@ -112,6 +112,10 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <argument
+            android:name="format"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/languageFragment"

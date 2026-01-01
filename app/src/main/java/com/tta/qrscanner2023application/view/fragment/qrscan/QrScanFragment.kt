@@ -36,7 +36,7 @@ import com.tta.qrscanner2023application.view.main.MainActivity
 class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
     private var lastText: String = ""
-    private var canOpenExternalImage = false
+
     private var isFlashOn = false
     private lateinit var settingViewModel: SettingViewModel
     private var isVibrationOn = false
@@ -121,11 +121,15 @@ class QrScanFragment : BaseCameraFragment<FragmentQrScanBinding>() {
             BarcodeFormat.ITF, // ITF
             BarcodeFormat.PDF_417, // PDF-417
             BarcodeFormat.DATA_MATRIX, // Data Matrix
-            BarcodeFormat.MAXICODE // MaxiCode
+            BarcodeFormat.MAXICODE, // MaxiCode
+            BarcodeFormat.CODABAR,
+            BarcodeFormat.RSS_14,
+            BarcodeFormat.RSS_EXPANDED,
+            BarcodeFormat.AZTEC
         )
         binding.barcodeView.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
         binding.barcodeView.decodeContinuous(callback)
-        canOpenExternalImage = true
+
     }
 
     // Launcher cho việc request permission
