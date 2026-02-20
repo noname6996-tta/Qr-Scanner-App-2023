@@ -10,7 +10,6 @@
         layout="@layout/item_action_code"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actionCopy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +19,6 @@
         layout="@layout/item_action_code"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actionSave"
         app:layout_constraintStart_toEndOf="@+id/actionShare"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +28,6 @@
         layout="@layout/item_action_code"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actionOpen"
         app:layout_constraintStart_toEndOf="@+id/actionCopy"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +37,6 @@
         layout="@layout/item_action_code"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actionSearch"
         app:layout_constraintStart_toEndOf="@+id/actionSave"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +46,6 @@
         layout="@layout/item_action_code"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/actionOpen"
         app:layout_constraintTop_toTopOf="parent" />

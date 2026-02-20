@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QrScan TeamT</string>
+    <string name="app_name">QR &amp; Barcode Scanner 2026</string>
     <string name="network">Network</string>
     <string name="password">Password</string>
     <string name="text">Text</string>
@@ -61,4 +61,15 @@
     <string name="change_language_tittle">Language change successful</string>
     <string name="lbl_more_apps">More apps</string>
     <string name="title_more_apps">More apps from us</string>
+    <string name="alert">Alert</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_text_tittle">You have not entered any text</string>
+    <string name="delete_all_warn_title">Are you sure you want to delete it?</string>
+    <string name="delete_success">Delete Success</string>
+    <string name="search">Search</string>
+    <string name="open">Open</string>
+    <string name="save_success">Save success</string>
+    <string name="save_qrcode">Save QrCode</string>
+    <string name="copy">Copy</string>
+    <string name="hide_qr_code">Hide Qr code</string>
 </resources>

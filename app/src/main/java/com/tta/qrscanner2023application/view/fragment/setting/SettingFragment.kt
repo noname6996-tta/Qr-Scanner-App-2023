@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.util.Constants
+import com.tta.qrscanner2023application.data.util.DialogUtil
 import com.tta.qrscanner2023application.databinding.FragmentSettingBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.CoreViewModel
@@ -95,9 +96,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToLanguageFragment())
         }
         clDeleteAll.setOnClickListener {
-            viewModelQr.deleteAllQrCode()
-            Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT)
-                .show()
+            DialogUtil.showAlertDialog(
+                context = requireContext(),
+                title = getString(R.string.alert),
+                message = getString(R.string.delete_all_warn_title),
+                positiveText = getString(R.string.delete),
+                negativeText = getString(R.string.cancel),
+                onPositiveClick = {
+                    viewModelQr.deleteAllQrCode()
+                    Snackbar.make(binding.root, getString(R.string.all_data_deleted), Snackbar.LENGTH_SHORT)
+                        .show()
+                },
+                onNegativeClick = {
+
+                }
+            )
         }
         clMoreApps.setOnClickListener {
             viewModel.openMoreApps(requireContext())

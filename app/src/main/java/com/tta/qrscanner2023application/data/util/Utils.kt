@@ -31,6 +31,9 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Hashtable
+import androidx.core.graphics.set
+import androidx.core.graphics.createBitmap
+import java.net.URLEncoder
 
 fun hasFlashFeature(context: Context): Boolean {
     val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
@@ -77,6 +80,24 @@ fun shareImage(context: Context, imageBitmapResource: Bitmap) {
     }
 }
 
+fun shareText(
+    context: Context,
+    text: String,
+    subject: String? = null
+) {
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, text)
+        subject?.let {
+            putExtra(Intent.EXTRA_SUBJECT, it)
+        }
+    }
+
+    context.startActivity(
+        Intent.createChooser(intent, "Chia sẻ qua")
+    )
+}
+
 fun copyToClipboard(context: Context, view: View, text: String) {
     val clipboardManager =
         context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -114,8 +135,6 @@ fun saveImage(context: Context, view: View, bitmap: Bitmap) {
                 }
                 values.put(MediaStore.Images.Media.IS_PENDING, false)
                 context.contentResolver.update(uri, values, null, null)
-
-                Snackbar.make(view, "保存しました。", Snackbar.LENGTH_SHORT).show()
             } catch (e: Exception) {
 
             }
@@ -159,14 +178,10 @@ fun generateQrCode(qrCodeData: String): Bitmap? {
         val bitMatrix = qrCodeWriter.encode(qrCodeData, BarcodeFormat.QR_CODE, 512, 512, hints)
         val width = bitMatrix.width
         val height = bitMatrix.height
-        val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        val bmp = createBitmap(width, height, Bitmap.Config.RGB_565)
         for (x in 0 until width) {
             for (y in 0 until height) {
-                bmp.setPixel(
-                    x,
-                    y,
-                    if (bitMatrix[x, y]) 0xFF000000.toInt() else 0xFFFFFFFF.toInt()
-                )
+                bmp[x, y] = if (bitMatrix[x, y]) 0xFF000000.toInt() else 0xFFFFFFFF.toInt()
             }
         }
         // Use 'bmp' to display the QR code as needed
@@ -203,4 +218,15 @@ fun Activity.vibratePhone() {
 fun playSound(context: Context) {
     val mediaPlayer = MediaPlayer.create(context, R.raw.done)
     mediaPlayer.start()
+}
+
+fun searchOnWeb(context: Context, query: String) {
+    val encodedQuery = URLEncoder.encode(query, "UTF-8")
+    val url = "https://www.google.com/search?q=$encodedQuery"
+
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse(url)
+    }
+
+    context.startActivity(intent)
 }

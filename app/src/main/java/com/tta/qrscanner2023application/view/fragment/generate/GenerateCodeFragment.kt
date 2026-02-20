@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blankj.utilcode.util.KeyboardUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.TypeCode
@@ -100,6 +101,8 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
                         result, type.toString()
                     )
                 )
+            } else {
+                ToastUtils.showShort(getString(R.string.no_text_tittle))
             }
         }
 

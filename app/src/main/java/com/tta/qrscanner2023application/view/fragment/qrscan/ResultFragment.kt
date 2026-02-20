@@ -12,18 +12,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.R
+import com.tta.qrscanner2023application.data.util.Logger
 import com.tta.qrscanner2023application.data.util.copyToClipboard
 import com.tta.qrscanner2023application.data.util.generateQrCode
 import com.tta.qrscanner2023application.data.util.isWebLinkOrAppLink
 import com.tta.qrscanner2023application.data.util.saveImage
+import com.tta.qrscanner2023application.data.util.searchOnWeb
 import com.tta.qrscanner2023application.data.util.shareImage
+import com.tta.qrscanner2023application.data.util.shareText
 import com.tta.qrscanner2023application.databinding.FragmentResultBinding
-import com.tta.qrscanner2023application.view.fragment.CoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -31,7 +32,6 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
-    private val qrViewModel: CoreViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true
     private val args: ResultFragmentArgs by navArgs()
     private var imageBitmapResoure: Bitmap? = null
@@ -62,26 +62,30 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
     }
 
     private fun checkImgVis() = with(binding) {
-        if (imgQr.visibility == View.VISIBLE) {
-            imgQr.visibility = View.GONE
-            tvShowQr.text = "Show Qr code"
-            llAction.actionShare.root.visibility = View.GONE
-            llAction.actionSave.root.visibility = View.GONE
-        } else {
-            imgQr.visibility = View.VISIBLE
-            tvShowQr.text = "Hide Qr code"
-            llAction.actionShare.root.visibility = View.VISIBLE
-            llAction.actionSave.root.visibility = View.VISIBLE
-        }
+        val isVisible = imgQr.visibility == View.VISIBLE
+
+        imgQr.visibility = if (isVisible) View.GONE else View.VISIBLE
+
+        tvShowQr.setText(
+            if (isVisible) R.string.show_qr_code
+            else R.string.hide_qr_code
+        )
+
+        llAction.actionShare.root.visibility =
+            if (isVisible) View.GONE else View.VISIBLE
+
+        llAction.actionSave.root.visibility =
+            if (isVisible) View.GONE else View.VISIBLE
     }
 
     private fun setViewActionQr(result: String) = with(binding) {
         with(llAction) {
 
             /* copy action */
-            actionCopy.tvTittle.text = "Copy"
+            actionCopy.tvTittle.text = getString(R.string.copy)
             actionCopy.imgIcon.setImageResource(R.drawable.ic_copy)
             actionCopy.llItem.setOnClickListener {
+                Logger.d("copy")
                 copyToClipboard(
                     requireActivity(),
                     binding.root,
@@ -90,11 +94,14 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
             }
 
             /* share action */
-            actionShare.tvTittle.text = "Share"
+            actionShare.tvTittle.text = getString(R.string.share)
             actionShare.imgIcon.setImageResource(R.drawable.ic_share)
             actionShare.llItem.setOnClickListener {
+                Logger.d("share")
                 if (imageBitmapResoure != null) {
                     shareImage(requireActivity(), imageBitmapResoure!!)
+                } else {
+                    shareText(requireActivity(), result)
                 }
             }
 
@@ -105,20 +112,22 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
                 actionOpen.root.visibility = View.GONE
             }
 
-            actionOpen.tvTittle.text = "Open"
+            actionOpen.tvTittle.text = getString(R.string.open)
             actionOpen.imgIcon.setImageResource(R.drawable.qr_background)
             actionOpen.llItem.setOnClickListener {
+                Logger.d("Open")
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(result))
                 startActivity(intent)
             }
 
             /* save action */
-            actionSave.tvTittle.text = "Save QrCode"
+            actionSave.tvTittle.text = getString(R.string.save_qrcode)
             actionSave.imgIcon.setImageResource(R.drawable.ic_save)
             actionSave.llItem.setOnClickListener {
+                Logger.d("save")
                 if (Build.VERSION.SDK_INT >= 13) {
                     imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
-                    Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), getString(R.string.save_success), Toast.LENGTH_LONG).show()
                 } else {
                     // Check for permission
                     if (ContextCompat.checkSelfPermission(
@@ -136,10 +145,18 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
                     } else {
                         // Permission has already been granted
                         // Proceed with the image saving process
-                        Toast.makeText(requireContext(), "Save success", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),
+                            getString(R.string.save_success), Toast.LENGTH_LONG).show()
                         imageBitmapResoure?.let { saveImage(requireContext(), binding.root, it) }
                     }
                 }
+            }
+
+            actionSearch.tvTittle.text = getString(R.string.search)
+            actionSearch.imgIcon.setImageResource(R.drawable.outline_search_24)
+            actionSearch.llItem.setOnClickListener {
+                Logger.d("actionSearch")
+                searchOnWeb(requireActivity(), result)
             }
         }
     }

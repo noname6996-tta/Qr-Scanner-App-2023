@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QrScan TeamT</string>
+    <string name="app_name">QR &amp; Barcode Scanner 2026</string>
     <string name="network">Mạng</string>
     <string name="password">Mật khẩu</string>
     <string name="text">Ký tự</string>
@@ -61,4 +61,15 @@
     <string name="change_language_tittle">Thay đổi ngôn ngữ thành công</string>
     <string name="lbl_more_apps">Xem thêm ứng dụng khác</string>
     <string name="title_more_apps">Nhiều ứng dụng hơn từ chúng tôi</string>
+    <string name="alert">Thông báo</string>
+    <string name="cancel">Huỷ</string>
+    <string name="no_text_tittle">Bạn chưa nhập văn bản nào</string>
+    <string name="delete_all_warn_title">Bạn có chắc chắn muốn xoá không?</string>
+    <string name="delete_success">Xoá thành công</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="open">Mở</string>
+    <string name="save_success">Lưu thành công</string>
+    <string name="save_qrcode">Lưu mã QR</string>
+    <string name="copy">Sao chép</string>
+    <string name="hide_qr_code">Ẩn mã QR</string>
 </resources>

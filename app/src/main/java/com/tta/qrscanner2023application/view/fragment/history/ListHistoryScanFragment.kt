@@ -6,9 +6,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.data.model.QrCodeEntity
 import com.tta.qrscanner2023application.data.model.TypeCode
+import com.tta.qrscanner2023application.data.util.DialogUtil
 import com.tta.qrscanner2023application.databinding.FragmentListHistoryBinding
 import com.tta.qrscanner2023application.view.base.BaseFragment
 import com.tta.qrscanner2023application.view.fragment.CoreViewModel
@@ -58,7 +60,21 @@ class ListHistoryScanFragment : BaseFragment<FragmentListHistoryBinding>() {
     override fun addEvent() {
         super.addEvent()
         historyAdapter.deleteItem {
-            viewModel.deleteQrCode(TypeCode.SCAN, list[it].id)
+            DialogUtil.showAlertDialog(
+                context = requireContext(),
+                title = getString(R.string.alert),
+                message = getString(R.string.delete_all_warn_title),
+                positiveText = getString(R.string.delete),
+                negativeText = getString(R.string.cancel),
+                onPositiveClick = {
+                    viewModel.deleteQrCode(TypeCode.SCAN, list[it].id)
+                    Snackbar.make(binding.root, getString(R.string.delete_success), Snackbar.LENGTH_SHORT)
+                        .show()
+                },
+                onNegativeClick = {
+
+                }
+            )
         }
         historyAdapter.showInfo {
             lifecycleScope.launch {
