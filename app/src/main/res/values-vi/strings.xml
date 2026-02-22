@@ -72,4 +72,10 @@
     <string name="save_qrcode">Lưu mã QR</string>
     <string name="copy">Sao chép</string>
     <string name="hide_qr_code">Ẩn mã QR</string>
+    <string name="rate_app">Đánh giá ứng dụng</string>
+    <string name="title_rate_app">Đánh giá ứng dụng</string>
+    <string name="desc_rate_app">Bạn có thích ứng dụng của chúng tôi không? Vui lòng dành chút thời gian để đánh giá và chia sẻ cảm nhận của bạn!</string>
+    <string name="title_rate_now">⭐ Đánh giá ngay</string>
+    <string name="lbl_later">Sau</string>
+    <string name="lbl_no_rate">Không hiển thị nữa</string>
 </resources>

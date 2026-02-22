@@ -72,4 +72,10 @@
     <string name="save_qrcode">Save QrCode</string>
     <string name="copy">Copy</string>
     <string name="hide_qr_code">Hide Qr code</string>
+    <string name="rate_app">Rate App</string>
+    <string name="title_rate_app">Rate the app</string>
+    <string name="desc_rate_app">Do you like our app? Please take a moment to rate and share your feelings!</string>
+    <string name="title_rate_now">⭐ Rate now</string>
+    <string name="lbl_later">Later</string>
+    <string name="lbl_no_rate">No more display</string>
 </resources>

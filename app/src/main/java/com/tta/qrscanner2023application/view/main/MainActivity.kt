@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.tta.qrscanner2023application.R
 import com.tta.qrscanner2023application.databinding.ActivityMainBinding
 import com.tta.qrscanner2023application.view.base.BaseActivity
+import com.tta.qrscanner2023application.view.fragment.rate.RateAppDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,6 +43,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.cardView.visibility = View.GONE
             }
         }
+
+        checkAndShowRateDialog()
     }
 
     override fun addEvent() = with(binding) {
@@ -117,5 +120,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun setVisibleBottomBar(visible: Boolean) {
         binding.imgToHome.isVisible = visible
         binding.cardView.isVisible = visible
+    }
+
+    private fun checkAndShowRateDialog() {
+        if (RateAppDialogFragment.shouldShowDialog(this)) {
+            val dialog = RateAppDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "RateAppDialog")
+        }
     }
 }
